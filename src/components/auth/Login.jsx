@@ -1,31 +1,30 @@
 import React, { useState } from "react"
 import { Link } from "react-router-dom"
 import { useNavigate } from "react-router-dom"
-import { getUserByEmail } from "../../services/userService"
 import "./Login.css"
+import { getUserByEmail } from "../services/userService"
 
 export const Login = () => {
   const [email, set] = useState("")
   const navigate = useNavigate()
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault()
 
-    return getUserByEmail(email).then((foundUsers) => {
-      if (foundUsers.length === 1) {
-        const user = foundUsers[0]
-        localStorage.setItem(
-          "mygear_user",
-          JSON.stringify({
-            id: user.id,
-          })
-        )
+    const foundUsers = await getUserByEmail(email)
+    if (foundUsers.length === 1) {
+      const user = foundUsers[0]
+      localStorage.setItem(
+        "mygear_user",
+        JSON.stringify({
+          id: user.id,
+        })
+      )
 
-        navigate("/")
-      } else {
-        window.alert("Invalid login")
-      }
-    })
+      navigate("/")
+    } else {
+      window.alert("Invalid login")
+    }
   }
 
   return (

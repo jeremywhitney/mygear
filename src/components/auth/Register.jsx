@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { createUser, getUserByEmail } from "../../services/userService"
 import "./Login.css"
+import { createUser, getUserByEmail } from "../services/userService"
 
 // TODO: Change this user object to match myGear user object
 export const Register = (props) => {
