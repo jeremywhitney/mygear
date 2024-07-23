@@ -1,5 +1,5 @@
 export const CategoryDropdown = ({
-  categories,
+  categories = [],
   selectedCategory,
   setSelectedCategory,
 }) => {
@@ -10,9 +10,9 @@ export const CategoryDropdown = ({
       onChange={(e) => setSelectedCategory(e.target.value)}
     >
       <option value="">All Categories</option>
-      {categories.map((category, index) => (
-        <option key={index} value={category}>
-          {category}
+      {categories.map((category) => (
+        <option key={category.id} value={category.id}>
+          {category.name}
         </option>
       ))}
     </select>

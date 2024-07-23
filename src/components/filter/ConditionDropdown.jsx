@@ -1,5 +1,5 @@
 export const ConditionDropdown = ({
-  conditions,
+  conditions = [],
   selectedCondition,
   setSelectedCondition,
 }) => {
@@ -10,9 +10,9 @@ export const ConditionDropdown = ({
       onChange={(e) => setSelectedCondition(e.target.value)}
     >
       <option value="">Select a Condition</option>
-      {conditions.map((condition, index) => (
-        <option key={index} value={condition}>
-          {condition}
+      {conditions.map((condition) => (
+        <option key={condition.id} value={condition.id}>
+          {condition.grade}
         </option>
       ))}
     </select>
