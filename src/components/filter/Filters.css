@@ -1,0 +1,44 @@
+.filter-bar {
+    display: flex;
+    justify-content: center; /* Center the filter bar horizontally */
+    align-items: center; /* Center items vertically */
+    gap: 20px; /* Space items evenly */
+    border: 2px solid purple; /* Add a purple border */
+    padding: 10px; /* Add some padding for better spacing */
+  }
+  
+.filter-dropdown {
+    padding: 5px; /* Add some padding to dropdowns */
+    font-size: 16px; /* Adjust font size */
+    border-radius: 4px;
+}
+
+.filter-checkbox {
+    display: flex;
+    align-items: center; /* Align checkbox and label vertically */
+    font-size: 16px; /* Adjust font size */
+}
+
+/* SearchBar.css */
+
+.search-bar {
+    display: flex;
+    justify-content: center; /* Center the search bar horizontally */
+    margin: 1rem 0; /* Add some margin above and below */
+  }
+  
+.search-bar input {
+    width: 100%; /* Full width for responsiveness */
+    max-width: 600px; /* Limit the width to keep it manageable */
+    padding: 0.5rem; /* Add some padding for better user experience */
+    font-size: 1rem; /* Set font size */
+    border: 1px solid #ccc; /* Light grey border */
+    border-radius: 4px; /* Rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.search-bar input:focus {
+    outline: none;
+    border-color: #007bff;
+}
+  

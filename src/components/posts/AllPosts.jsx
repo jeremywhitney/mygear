@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { getAllPosts } from "../services/postService";
 import { SmallPost } from "./SmallPost";
-import { PostFilterBar } from "./PostFilterBar";
+import { PostFilterBar } from "../filter/PostFilterBar";
+import { SearchBar } from "../filter/SearchBar";
 import "./Posts.css";
+import "../filter/Filters.css";
 
 export const AllPosts = ({ currentUser }) => {
   const [allPosts, setAllPosts] = useState([]);
@@ -51,6 +53,7 @@ export const AllPosts = ({ currentUser }) => {
 
   return (
     <div className="all-posts-container">
+      <SearchBar posts={allPosts} setFilteredPosts={setFilteredPosts} />
       <PostFilterBar
         categories={categories}
         selectedCategory={selectedCategory}
