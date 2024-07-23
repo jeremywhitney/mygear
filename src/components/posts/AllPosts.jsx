@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getAllPosts } from "../services/postService";
 import { SmallPost } from "./SmallPost";
+import { PostFilterBar } from "./PostFilterBar";
 import "./Posts.css";
 
 export const AllPosts = ({ currentUser }) => {
@@ -50,41 +51,16 @@ export const AllPosts = ({ currentUser }) => {
 
   return (
     <div className="all-posts-container">
-      <h2>All Posts</h2>
-      <div className="filters">
-        <select
-          value={selectedCategory}
-          onChange={(e) => setSelectedCategory(e.target.value)}
-        >
-          <option value="">All Categories</option>
-          {categories.map((category, index) => (
-            <option key={index} value={category}>
-              {category}
-            </option>
-          ))}
-        </select>
-        <select
-          value={selectedBrand}
-          onChange={(e) => setSelectedBrand(e.target.value)}
-        >
-          <option value="">All Brands</option>
-          {brands.map((brand, index) => (
-            <option key={index} value={brand}>
-              {brand}
-            </option>
-          ))}
-        </select>
-        <div>
-          <label>
-            <input
-              type="checkbox"
-              checked={showForSale}
-              onChange={() => setShowForSale(!showForSale)}
-            />
-            For Sale
-          </label>
-        </div>
-      </div>
+      <PostFilterBar
+        categories={categories}
+        selectedCategory={selectedCategory}
+        setSelectedCategory={setSelectedCategory}
+        brands={brands}
+        selectedBrand={selectedBrand}
+        setSelectedBrand={setSelectedBrand}
+        showForSale={showForSale}
+        setShowForSale={setShowForSale}
+      />
       <article className="all-posts">
         {filteredPosts.map((post) => (
           <SmallPost

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Outlet, Route, Routes } from "react-router-dom";
 import { AllPosts } from "../posts/AllPosts";
+import { NavBar } from "../nav/NavBar";
 
 export const ApplicationViews = () => {
   const [currentUser, setCurrentUser] = useState({});
@@ -17,6 +18,7 @@ export const ApplicationViews = () => {
         path="/"
         element={
           <>
+            <NavBar />
             <Outlet />
           </>
         }
