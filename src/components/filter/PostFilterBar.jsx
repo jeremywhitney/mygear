@@ -1,3 +1,7 @@
+import { BrandDropdown } from "./BrandDropdown";
+import { CategoryDropdown } from "./CategoryDropdown";
+import { ForSaleFilter } from "./ForSaleFilter";
+
 export const PostFilterBar = ({
   categories,
   selectedCategory,
@@ -10,40 +14,20 @@ export const PostFilterBar = ({
 }) => {
   return (
     <div className="filter-bar">
-      <select
-      className="filter-dropdown"
-        value={selectedCategory}
-        onChange={(e) => setSelectedCategory(e.target.value)}
-      >
-        <option value="">All Categories</option>
-        {categories.map((category, index) => (
-          <option key={index} value={category}>
-            {category}
-          </option>
-        ))}
-      </select>
-      <select
-      className="filter-dropdown"
-        value={selectedBrand}
-        onChange={(e) => setSelectedBrand(e.target.value)}
-      >
-        <option value="">All Brands</option>
-        {brands.map((brand, index) => (
-          <option key={index} value={brand}>
-            {brand}
-          </option>
-        ))}
-      </select>
-      <div>
-        <label className="filter-checkbox">
-          <input
-            type="checkbox"
-            checked={showForSale}
-            onChange={() => setShowForSale(!showForSale)}
-          />
-          For Sale
-        </label>
-      </div>
+      <CategoryDropdown
+        categories={categories}
+        selectedCategory={selectedCategory}
+        setSelectedCategory={setSelectedCategory}
+      />
+      <BrandDropdown
+        brands={brands}
+        selectedBrand={selectedBrand}
+        setSelectedBrand={setSelectedBrand}
+      />
+      <ForSaleFilter
+        showForSale={showForSale}
+        setShowForSale={setShowForSale}
+      />
     </div>
   );
 };
