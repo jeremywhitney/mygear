@@ -3,14 +3,17 @@ export const CategoryDropdown = ({
   selectedCategory,
   setSelectedCategory,
 }) => {
+  const sortedCategories = [...categories].sort((a, b) =>
+    a.name.localeCompare(b.name)
+  );
   return (
     <select
       className="filter-dropdown"
       value={selectedCategory}
       onChange={(e) => setSelectedCategory(e.target.value)}
     >
-      <option value="">All Categories</option>
-      {categories.map((category) => (
+      <option value="">Select a Category</option>
+      {sortedCategories.map((category) => (
         <option key={category.id} value={category.id}>
           {category.name}
         </option>

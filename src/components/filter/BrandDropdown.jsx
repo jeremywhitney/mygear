@@ -3,6 +3,7 @@ export const BrandDropdown = ({
   selectedBrand,
   setSelectedBrand,
 }) => {
+  const sortedBrands = [...brands].sort((a, b) => a.name.localeCompare(b.name));
   return (
     <select
       className="filter-dropdown"
@@ -10,7 +11,7 @@ export const BrandDropdown = ({
       onChange={(e) => setSelectedBrand(e.target.value)}
     >
       <option value="">All Brands</option>
-      {brands.map((brand) => (
+      {sortedBrands.map((brand) => (
         <option key={brand.id} value={brand.id}>
           {brand.name}
         </option>

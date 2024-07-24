@@ -24,14 +24,12 @@ export const AllPosts = ({ currentUser }) => {
     const categoryList = Array.from(categorySet).map((id) => {
       return postsArray.find((post) => post.category.id === id).category;
     });
-    categoryList.sort((a, b) => a.name.localeCompare(b.name)); // Alphabetize Category list
     setCategories(categoryList);
 
     const brandSet = new Set(postsArray.map((post) => post.brand.id));
     const brandList = Array.from(brandSet).map((id) => {
       return postsArray.find((post) => post.brand.id === id).brand;
     });
-    brandList.sort((a, b) => a.name.localeCompare(b.name)); // Alphabetize Brand list
     setBrands(brandList);
   };
 
