@@ -13,19 +13,25 @@ export const AllPosts = ({ currentUser }) => {
   const [brands, setBrands] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedBrand, setSelectedBrand] = useState("");
-  const [showForSale, setShowForSale] = useState(false);
+  const [forSale, setForSale] = useState(false);
 
   const getAndSetPosts = async () => {
     const postsArray = await getAllPosts();
     setAllPosts(postsArray);
     setFilteredPosts(postsArray);
-    const categoryList = Array.from(
-      new Set(postsArray.map((post) => post.category.name))
-    ).sort(); // Alphabetize Category list
+
+    const categorySet = new Set(postsArray.map((post) => post.category.id));
+    const categoryList = Array.from(categorySet).map((id) => {
+      return postsArray.find((post) => post.category.id === id).category;
+    });
+    categoryList.sort((a, b) => a.name.localeCompare(b.name)); // Alphabetize Category list
     setCategories(categoryList);
-    const brandList = Array.from(
-      new Set(postsArray.map((post) => post.brand.name))
-    ).sort(); // Alphabetize Brand list
+
+    const brandSet = new Set(postsArray.map((post) => post.brand.id));
+    const brandList = Array.from(brandSet).map((id) => {
+      return postsArray.find((post) => post.brand.id === id).brand;
+    });
+    brandList.sort((a, b) => a.name.localeCompare(b.name)); // Alphabetize Brand list
     setBrands(brandList);
   };
 
@@ -37,19 +43,21 @@ export const AllPosts = ({ currentUser }) => {
     let posts = allPosts;
 
     if (selectedCategory) {
-      posts = posts.filter((post) => post.category.name === selectedCategory);
+      posts = posts.filter(
+        (post) => post.category.id === parseInt(selectedCategory)
+      );
     }
 
     if (selectedBrand) {
-      posts = posts.filter((post) => post.brand.name === selectedBrand);
+      posts = posts.filter((post) => post.brand.id === parseInt(selectedBrand));
     }
 
-    if (showForSale) {
+    if (forSale) {
       posts = posts.filter((post) => post.forSale);
     }
 
     setFilteredPosts(posts);
-  }, [selectedCategory, selectedBrand, showForSale, allPosts]);
+  }, [selectedCategory, selectedBrand, forSale, allPosts]);
 
   return (
     <div className="all-posts-container">
@@ -61,8 +69,8 @@ export const AllPosts = ({ currentUser }) => {
         brands={brands}
         selectedBrand={selectedBrand}
         setSelectedBrand={setSelectedBrand}
-        showForSale={showForSale}
-        setShowForSale={setShowForSale}
+        forSale={forSale}
+        setForSale={setForSale}
       />
       <article className="all-posts">
         {filteredPosts.map((post) => (

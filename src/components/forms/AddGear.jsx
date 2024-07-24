@@ -45,6 +45,7 @@ export const AddGear = ({ currentUser }) => {
       <h1>Add Gear to Collection</h1>
       <GearForm
         handleSubmit={handleSubmit}
+        currentUser={currentUser}
         categories={categories}
         conditions={conditions}
         brands={brands}

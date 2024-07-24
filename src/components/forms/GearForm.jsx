@@ -5,6 +5,7 @@ import { BrandDropdown } from "../filter/BrandDropdown";
 import { ForSaleFilter } from "../filter/ForSaleFilter";
 
 export const GearForm = ({
+  currentUser, 
   gear = {},
   handleSubmit,
   categories = [],
@@ -23,9 +24,10 @@ export const GearForm = ({
   const onSubmit = (event) => {
     event.preventDefault();
     const formData = {
-      brandId: brand,
-      categoryId: category,
-      conditionId: condition,
+      userId: currentUser.id,
+      brandId: parseInt(brand),
+      categoryId: parseInt(category),
+      conditionId: parseInt(condition),
       model,
       year,
       forSale,

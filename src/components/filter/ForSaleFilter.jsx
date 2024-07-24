@@ -1,11 +1,11 @@
-export const ForSaleFilter = ({ showForSale, setShowForSale }) => {
+export const ForSaleFilter = ({ forSale, setForSale }) => {
   return (
     <div>
       <label className="filter-checkbox">
         <input
           type="checkbox"
-          checked={showForSale}
-          onChange={() => setShowForSale(!showForSale)}
+          checked={forSale}
+          onChange={() => setForSale(!forSale)}
         />
         For Sale
       </label>

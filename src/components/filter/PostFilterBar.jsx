@@ -9,8 +9,8 @@ export const PostFilterBar = ({
   brands,
   selectedBrand,
   setSelectedBrand,
-  showForSale,
-  setShowForSale,
+  forSale,
+  setForSale,
 }) => {
   return (
     <div className="filter-bar">
@@ -24,10 +24,7 @@ export const PostFilterBar = ({
         selectedBrand={selectedBrand}
         setSelectedBrand={setSelectedBrand}
       />
-      <ForSaleFilter
-        showForSale={showForSale}
-        setShowForSale={setShowForSale}
-      />
+      <ForSaleFilter forSale={forSale} setForSale={setForSale} />
     </div>
   );
 };
