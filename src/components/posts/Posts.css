@@ -12,14 +12,13 @@
     border: 2px solid green
   }
 
-  /* Individual post container */
-  .post-container {
+  /* Small post container */
+  .sm-post-container {
     flex: 1 1 300px; /* Flex-grow, flex-shrink, and base size */
     max-width: 300px; /* Set maximum width */
     min-width: 200px; /* Set minimum width to ensure responsiveness */
     box-sizing: border-box; /* Include padding and border in width */
     background-color: #f9f9f9; /* Light background color */
-    border: 1px solid #ddd; /* Light border around each container */
     border-radius: 8px; /* Rounded corners */
     padding: 16px; /* Padding inside the container */
     margin: 5px;
@@ -29,14 +28,14 @@
   }
   
   /* Flex container for image and text */
-  .post-content {
+  .sm-post-content {
     display: flex;
     align-items: center; /* Center vertically */
     gap: 16px; /* Space between image and text */
   }
   
   /* Image styling */
-  .post-content img {
+  .sm-post-content img {
     max-width: 150px; /* Fixed width for image */
     height: auto; /* Maintain aspect ratio */
     border-radius: 8px; /* Rounded corners for image */
@@ -58,8 +57,75 @@
   
   /* User name styling */
   .text-content p {
-    margin: 4px 0 0; /* Margin to separate from previous content */
     font-size: 0.875rem; /* Slightly smaller font size for user name */
     color: #555; /* Slightly lighter color for user name */
   }
+
+/* Container for My Collection */
+  .my-posts-container {
+    border: 2px solid blue; /* Visual aid */
+  }
+
+  .my-posts {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Center the grid horizontally */
+    padding: 16px; /* Padding around the container */
+    border: 2px solid green
+  }
+
+/* Large post container */
+  .lg-post-container {
+    width: 66%; /* 2/3rds of the page width */
+    margin: 15px auto; /* Center align */
+    position: relative; /* Needed for absolute positioning of the forSale status */
+    padding: 20px;
+    border: 2px solid red; /* Visual aid */
+    border-radius: 8px; /* Optional rounded corners */
+    background-color: #f9f9f9; /* Optional background color */
+  }
+  
+  .lg-post-content {
+    display: flex;
+    align-items: flex-start; /* Align items to the top */
+  }
+  
+  .lg-post-content img {
+    width: 25%; /* 1/4 of the container width */
+    margin-right: 20px; /* Space between image and text */
+    border-radius: 8px; /* Optional rounded corners */
+  }
+  
+  .text-content {
+    flex: 1; /* Fill the remaining space */
+    position: relative; /* Needed for positioning the forSale status */
+  }
+  
+  .for-sale-status {
+    position: absolute; /* Position in the top right corner */
+    top: 10px;
+    right: 10px;
+    background-color: #ffeb3b; /* Optional background color for visibility */
+    padding: 5px;
+    border-radius: 4px; /* Optional rounded corners */
+  }
+
+  h2 {
+    margin: 5px
+  }
+  
+  h3 {
+    margin-top: 0;
+  }
+  
+  p {
+    margin: 5px 0;
+  }
+
+  .description {
+    margin: 15px 0; /* Add space around the description */
+    padding-left: 20px; /* Indent the description from the left */
+  }
+  
+
   

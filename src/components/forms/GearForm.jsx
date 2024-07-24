@@ -12,6 +12,7 @@ export const GearForm = ({
   categories = [],
   conditions = [],
   brands = [],
+
 }) => {
   const [category, setCategory] = useState(gear.category || "");
   const [condition, setCondition] = useState(gear.condition || "");
@@ -46,6 +47,7 @@ export const GearForm = ({
         forSale,
         description,
         image,
+        timestamp: new Date().toISOString().split("T")[0],
       };
       handleSubmit(formData);
     }
