@@ -21,8 +21,8 @@ export const createGearPost = async (gearData) => {
     body: JSON.stringify(gearData),
   });
   if (!response.ok) {
-    throw new Error("Network response was not ok");
+    throw new Error("Error creating gear post");
   }
-
-  return response.json();
+  const newPost = await response.json();
+  return newPost;
 };

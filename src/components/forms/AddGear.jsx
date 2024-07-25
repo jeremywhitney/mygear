@@ -33,8 +33,8 @@ export const AddGear = ({ currentUser }) => {
 
   const handleSubmit = async (formData) => {
     try {
-      await createGearPost(formData);
-      navigate("/gear");
+      const newPost = await createGearPost(formData);
+      navigate(`/gear/${newPost.id}`);
     } catch (error) {
       console.error("Errror adding gear:", error);
     }

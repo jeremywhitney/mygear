@@ -1,8 +1,10 @@
+import { Link } from "react-router-dom";
 import "./Posts.css";
 
-export const SmallPost = ({ image, year, brand, model, user }) => {
+export const SmallPost = ({ id, image, year, brand, model, user }) => {
   return (
     <div className="sm-post-container">
+      <Link to={`/gear/${id}`} className="post-link">
       <div className="sm-post-content">
         <img src={image} alt={`${brand} ${model}`}></img>
         <div className="text-content">
@@ -12,6 +14,7 @@ export const SmallPost = ({ image, year, brand, model, user }) => {
           <p>{user}</p>
         </div>
       </div>
+      </Link>
     </div>
   );
 };

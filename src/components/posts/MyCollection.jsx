@@ -61,7 +61,7 @@ export const MyCollection = ({ currentUser }) => {
   }, [selectedCategory, selectedBrand, forSale, allPosts]);
 
   // Check if currentUser's collection
-  const isOwnCollection = true
+  const isOwnCollection = true;
 
   return (
     <div className="my-posts-container">
@@ -81,6 +81,7 @@ export const MyCollection = ({ currentUser }) => {
         {filteredPosts.map((post) => (
           <LargePost
             key={post.id}
+            id={post.id}
             user={post.user.name}
             brand={post.brand.name}
             condition={post.condition?.grade || ""}

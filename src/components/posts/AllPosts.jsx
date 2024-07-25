@@ -5,6 +5,7 @@ import { PostFilterBar } from "../filter/PostFilterBar";
 import { SearchBar } from "../filter/SearchBar";
 import "./Posts.css";
 import "../filter/Filters.css";
+import { Link } from "react-router-dom";
 
 export const AllPosts = ({ currentUser }) => {
   const [allPosts, setAllPosts] = useState([]);
@@ -74,6 +75,7 @@ export const AllPosts = ({ currentUser }) => {
         {filteredPosts.map((post) => (
           <SmallPost
             key={post.id}
+            id={post.id}
             image={post.image}
             year={post.year}
             brand={post.brand.name}

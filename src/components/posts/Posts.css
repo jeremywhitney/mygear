@@ -67,9 +67,6 @@
   }
 
   .my-posts {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center; /* Center the grid horizontally */
     padding: 16px; /* Padding around the container */
     border: 2px solid green
   }
@@ -83,11 +80,12 @@
     border: 2px solid red; /* Visual aid */
     border-radius: 8px; /* Optional rounded corners */
     background-color: #f9f9f9; /* Optional background color */
+    box-sizing: border-box;
   }
   
   .lg-post-content {
     display: flex;
-    align-items: flex-start; /* Align items to the top */
+    align-items: center; 
   }
   
   .lg-post-content img {
@@ -126,6 +124,13 @@
     margin: 15px 0; /* Add space around the description */
     padding-left: 20px; /* Indent the description from the left */
   }
+  
+  .post-link {
+    display: block; /* Ensure Link behaves as a block element */
+    text-decoration: none; /* Remove underline from Link */
+    color: inherit; /* Inherit color from parent */
+  }
+  
   
   .gear-details-container {
     width: 70%;
