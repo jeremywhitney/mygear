@@ -5,6 +5,13 @@ export const getAllPosts = async () => {
   return await response.json();
 };
 
+export const getPostById = async (postId) => {
+  const response = await fetch(
+    `http://localhost:8088/posts/${postId}?_expand=user&_expand=brand&_expand=condition`
+  );
+  return await response.json();
+};
+
 export const createGearPost = async (gearData) => {
   const response = await fetch(`http://localhost:8088/posts`, {
     method: "POST",

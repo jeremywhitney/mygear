@@ -127,5 +127,52 @@
     padding-left: 20px; /* Indent the description from the left */
   }
   
+  .gear-details-container {
+    width: 70%;
+    margin: 3rem auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .gear-details-content {
+    display: flex;
+    align-items: flex-start;
+  }
+  
+  .gear-image {
+    width: 50%;
+    height: auto;
+    border-radius: 8px;
+    margin-right: 20px;
+  }
+  
+  .gear-info {
+    flex: 1;
+  }
 
+  .gear-info p {
+    margin: 2rem 2rem;
+  }
+  
+  .gear-info h2 {
+    margin-top: 0;
+  }
+  
+  .for-sale {
+    font-weight: bold;
+    color: red;
+    margin-top: 10px;
+  }
+  
+  .gear-info div {
+    margin-bottom: 10px;
+  }
+  
+  .gear-info .description {
+    margin-top: 20px;
+    text-indent: 20px;
+  }
+  
   
