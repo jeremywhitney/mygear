@@ -26,3 +26,13 @@ export const createGearPost = async (gearData) => {
   const newPost = await response.json();
   return newPost;
 };
+
+export const editGearPost = async (postId, updatedPost) => {
+  return fetch(`http://localhost:8088/posts/${postId}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(updatedPost),
+  }).then((response) => response.json());
+};

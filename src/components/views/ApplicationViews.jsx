@@ -5,6 +5,7 @@ import { NavBar } from "../nav/NavBar";
 import { AddGear } from "../forms/AddGear";
 import { MyCollection } from "../posts/MyCollection";
 import { GearDetails } from "../posts/GearDetails";
+import { EditGear } from "../forms/EditGear";
 
 export const ApplicationViews = () => {
   const [currentUser, setCurrentUser] = useState({});
@@ -28,7 +29,14 @@ export const ApplicationViews = () => {
       >
         <Route index element={<AllPosts currentUser={currentUser} />} />
         <Route path="gear" element={<AllPosts currentUser={currentUser} />} />
-        <Route path="gear/:postId" element={<GearDetails />} />
+        <Route
+          path="gear/:postId"
+          element={<GearDetails currentUser={currentUser} />}
+        />
+        <Route
+          path="gear/edit/:postId"
+          element={<EditGear currentUser={currentUser} />}
+        />
         <Route
           path="mycollection"
           element={<MyCollection currentUser={currentUser} />}

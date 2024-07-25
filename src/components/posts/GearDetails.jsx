@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { getPostById } from "../services/postService";
 import "./Posts.css";
 
@@ -13,6 +13,8 @@ export const GearDetails = ({ currentUser }) => {
     });
   }, [postId]);
 
+  const isGearOwner = post.userId === currentUser.id;
+
   return (
     <>
       <h1>Gear Details</h1>
@@ -24,7 +26,8 @@ export const GearDetails = ({ currentUser }) => {
             className="gear-image"
           />
           <div className="gear-info">
-            <div>{post.user?.name}'s</div>
+            {isGearOwner ? <div></div> : <div>{post.user?.name}'s</div>}
+
             <h2>
               {post.year} {post.brand?.name} {post.model}
             </h2>
@@ -37,6 +40,11 @@ export const GearDetails = ({ currentUser }) => {
             <div>Added to Collection: {post.timestamp}</div>
           </div>
         </div>
+        {isGearOwner && (
+          <div className="edit-gear-button">
+            <Link to={`/gear/edit/${postId}`}>Edit Gear</Link>
+          </div>
+        )}
       </div>
     </>
   );

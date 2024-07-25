@@ -1,18 +1,18 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CategoryDropdown } from "../filter/CategoryDropdown";
 import { ConditionDropdown } from "../filter/ConditionDropdown";
 import { BrandDropdown } from "../filter/BrandDropdown";
 import { ForSaleFilter } from "../filter/ForSaleFilter";
-import "./Form.css"
+import "./Form.css";
 
 export const GearForm = ({
-  currentUser, 
+  currentUser,
   gear = {},
   handleSubmit,
   categories = [],
   conditions = [],
   brands = [],
-
+  initialData = {},
 }) => {
   const [category, setCategory] = useState(gear.category || "");
   const [condition, setCondition] = useState(gear.condition || "");
@@ -23,6 +23,19 @@ export const GearForm = ({
   const [image, setImage] = useState(gear.image || "");
   const [forSale, setForSale] = useState(gear.forSale || false);
   const [errors, setErrors] = useState({});
+
+  useEffect(() => {
+    if (initialData) {
+      setCategory(initialData.categoryId);
+      setCondition(initialData.conditionId);
+      setBrand(initialData.brandId);
+      setYear(initialData.year);
+      setModel(initialData.model);
+      setDescription(initialData.description);
+      setImage(initialData.image);
+      setForSale(initialData.forSale);
+    }
+  }, [initialData]);
 
   const onSubmit = (event) => {
     event.preventDefault();
