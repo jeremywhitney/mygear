@@ -25,18 +25,18 @@ export const GearForm = ({
   const [errors, setErrors] = useState({});
 
   useEffect(() => {
-    if (initialData) {
-      setCategory(initialData.categoryId);
-      setCondition(initialData.conditionId);
-      setBrand(initialData.brandId);
-      setYear(initialData.year);
-      setModel(initialData.model);
-      setDescription(initialData.description);
-      setImage(initialData.image);
-      setForSale(initialData.forSale);
+    if (Object.keys(initialData).length > 0) {
+      setCategory(initialData.categoryId || "");
+      setCondition(initialData.conditionId || "");
+      setBrand(initialData.brandId || "");
+      setYear(initialData.year || "");
+      setModel(initialData.model || "");
+      setDescription(initialData.description || "");
+      setImage(initialData.image || "");
+      setForSale(initialData.forSale || false);
     }
   }, [initialData]);
-
+  
   const onSubmit = (event) => {
     event.preventDefault();
 
