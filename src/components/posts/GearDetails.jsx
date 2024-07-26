@@ -50,16 +50,28 @@ export const GearDetails = ({ currentUser }) => {
             <div>Added to Collection: {post.timestamp}</div>
           </div>
         </div>
-        {isGearOwner && (
-          <div className="edit-gear-button">
-            <Link to={`/gear/edit/${postId}`}>Edit Gear</Link>
-          </div>
-        )}
-        {isGearOwner && (
-          <div className="delete-gear-button">
-            <button onClick={() => handleDelete(postId)}>Delete</button>
-          </div>
-        )}
+        <div className="button-container">
+          {isGearOwner && (
+            <button className="edit-gear-button">
+              <Link
+                to={`/gear/edit/${postId}`}
+                className="edit-gear-button-link"
+              >
+                Edit Gear
+              </Link>
+            </button>
+          )}
+          {isGearOwner && (
+            <div>
+              <button
+                className="delete-gear-button"
+                onClick={() => handleDelete(postId)}
+              >
+                Delete
+              </button>
+            </div>
+          )}
+        </div>
       </div>
     </>
   );
