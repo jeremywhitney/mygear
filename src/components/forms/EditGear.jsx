@@ -26,6 +26,8 @@ export const EditGear = ({ currentUser }) => {
       forSale: updatedPost.forSale,
       description: updatedPost.description,
       image: updatedPost.image,
+      timestamp: initialData.timestamp,
+      lastEditDate: new Date().toISOString().split("T")[0],
     };
     return await editGearPost(postId, editedPost).then(() => {
       navigate(`/gear/${postId}`);
@@ -33,21 +35,24 @@ export const EditGear = ({ currentUser }) => {
   };
 
   return (
-    <DropdownUtility>
-      {({ categories, conditions, brands }) =>
-        initialData ? (
-          <GearForm
-            currentUser={currentUser}
-            initialData={initialData}
-            categories={categories}
-            conditions={conditions}
-            brands={brands}
-            handleSubmit={handleUpdatePost}
-          />
-        ) : (
-          <div>Loading...</div>
-        )
-      }
-    </DropdownUtility>
+    <div>
+      <h1>Edit Gear</h1>
+      <DropdownUtility>
+        {({ categories, conditions, brands }) =>
+          initialData ? (
+            <GearForm
+              currentUser={currentUser}
+              initialData={initialData}
+              categories={categories}
+              conditions={conditions}
+              brands={brands}
+              handleSubmit={handleUpdatePost}
+            />
+          ) : (
+            <div>Loading...</div>
+          )
+        }
+      </DropdownUtility>
+    </div>
   );
 };

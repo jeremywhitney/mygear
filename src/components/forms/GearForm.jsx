@@ -36,7 +36,7 @@ export const GearForm = ({
       setForSale(initialData.forSale || false);
     }
   }, [initialData]);
-  
+
   const onSubmit = (event) => {
     event.preventDefault();
 
@@ -75,20 +75,12 @@ export const GearForm = ({
       />
       {errors.category && <p>{errors.category}</p>}
 
-      <ConditionDropdown
-        conditions={conditions}
-        selectedCondition={condition}
-        setSelectedCondition={setCondition}
-      />
-
       <BrandDropdown
         brands={brands}
         selectedBrand={brand}
         setSelectedBrand={setBrand}
       />
       {errors.brand && <p>{errors.brand}</p>}
-
-      <ForSaleFilter forSale={forSale} setForSale={setForSale} />
 
       <div>
         <label>Year:</label>
@@ -107,6 +99,15 @@ export const GearForm = ({
         />
         {errors.model && <p>{errors.model}</p>}
       </div>
+
+      <ConditionDropdown
+        conditions={conditions}
+        selectedCondition={condition}
+        setSelectedCondition={setCondition}
+      />
+
+      <ForSaleFilter forSale={forSale} setForSale={setForSale} />
+
       <div>
         <label>Description:</label>
         <textarea

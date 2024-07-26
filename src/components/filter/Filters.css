@@ -11,12 +11,15 @@
     padding: 5px; /* Add some padding to dropdowns */
     font-size: 16px; /* Adjust font size */
     border-radius: 4px;
+    width: auto;
+    margin: 10px;
 }
 
 .filter-checkbox {
     display: flex;
     align-items: center; /* Align checkbox and label vertically */
     font-size: 16px; /* Adjust font size */
+    padding: 10px;
 }
 
 /* SearchBar.css */
@@ -30,7 +33,7 @@
 .search-bar input {
     width: 100%; /* Full width for responsiveness */
     max-width: 600px; /* Limit the width to keep it manageable */
-    padding: 0.5rem; /* Add some padding for better user experience */
+    padding: 1rem; /* Add some padding for better user experience */
     font-size: 1rem; /* Set font size */
     border: 1px solid #ccc; /* Light grey border */
     border-radius: 4px; /* Rounded corners */

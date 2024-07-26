@@ -12,6 +12,11 @@ export const getPostById = async (postId) => {
   return await response.json();
 };
 
+export const getPostsByUserId = async (userId) => {
+  const response = await fetch(`http://localhost:8088/posts?userId=${userId}`)
+  return await response.json()
+}
+
 export const createGearPost = async (gearData) => {
   const response = await fetch(`http://localhost:8088/posts`, {
     method: "POST",
@@ -35,4 +40,10 @@ export const editGearPost = async (postId, updatedPost) => {
     },
     body: JSON.stringify(updatedPost),
   }).then((response) => response.json());
+};
+
+export const deleteGearPost = async (postId) => {
+  return fetch(`http://localhost:8088/posts/${postId}`, {
+    method: "DELETE",
+  });
 };

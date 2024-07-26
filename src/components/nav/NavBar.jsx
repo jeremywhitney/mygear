@@ -16,8 +16,10 @@ export const NavBar = () => {
       <li className="navbar-item">
         <Link to="/addgear">Add Gear</Link>
       </li>
-      <li className="navbar-item">Wishlist</li>
-      <li className="navbar-item">Profile</li>
+      {/* Wishlist */}
+      <li className="navbar-item">
+        <Link to={`/profile/${currentUser.id}`}>Profile</Link>
+      </li>
       {localStorage.getItem("mygear_user") ? (
         <li className="navbar-item navbar-logout">
           <Link

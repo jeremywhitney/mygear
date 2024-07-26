@@ -1,6 +1,6 @@
 /* 2 Column Layout*/
 
-form {
+/* form {
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
@@ -36,7 +36,7 @@ form {
   }
   
   button {
-    grid-column: span 2;
+    width: auto;
     background-color: #007bff;
     color: white;
     border: none;
@@ -50,19 +50,19 @@ form {
     background-color: #0056b3;
   }
   
-  /* Adjustments for two-column layout */
+
   .gear-form-item {
     grid-column: span 1;
   }
   
   .gear-form-item.full-width {
     grid-column: span 2;
-  }
+  } */
 
 
 /* Vertical layout */
 
-/* form {
+form {
     max-width: 600px;
     margin: 0 auto;
     padding: 20px;
@@ -87,6 +87,7 @@ form {
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
+    font-size: .8rem;
   }
   
   textarea {
@@ -108,15 +109,8 @@ form {
     background-color: #0056b3;
   }
   
-  .filter-dropdown {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
   .for-sale-filter {
     margin-top: 10px;
-  } */
+  }
   
   

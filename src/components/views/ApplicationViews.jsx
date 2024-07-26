@@ -6,6 +6,7 @@ import { AddGear } from "../forms/AddGear";
 import { MyCollection } from "../posts/MyCollection";
 import { GearDetails } from "../posts/GearDetails";
 import { EditGear } from "../forms/EditGear";
+import { UserProfile } from "../users/UserProfile";
 
 export const ApplicationViews = () => {
   const [currentUser, setCurrentUser] = useState({});
@@ -28,7 +29,9 @@ export const ApplicationViews = () => {
         }
       >
         <Route index element={<AllPosts currentUser={currentUser} />} />
-        <Route path="gear" element={<AllPosts currentUser={currentUser} />} />
+        <Route 
+          path="gear" 
+          element={<AllPosts currentUser={currentUser} />} />
         <Route
           path="gear/:postId"
           element={<GearDetails currentUser={currentUser} />}
@@ -41,7 +44,13 @@ export const ApplicationViews = () => {
           path="mycollection"
           element={<MyCollection currentUser={currentUser} />}
         />
-        <Route path="addgear" element={<AddGear currentUser={currentUser} />} />
+        <Route 
+          path="addgear" 
+          element={<AddGear currentUser={currentUser} />} />
+        <Route
+          path="profile/:userId"
+          element={<UserProfile currentUser={currentUser} />}
+        />
       </Route>
     </Routes>
   );

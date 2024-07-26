@@ -1,17 +1,27 @@
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
-import { getPostById } from "../services/postService";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { deleteGearPost, getPostById } from "../services/postService";
 import "./Posts.css";
 
 export const GearDetails = ({ currentUser }) => {
   const [post, setPost] = useState({});
   const { postId } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     getPostById(postId).then((postObj) => {
       setPost(postObj);
     });
   }, [postId]);
+
+  const handleDelete = async (postId) => {
+    try {
+      await deleteGearPost(postId);
+      navigate("/mycollection");
+    } catch (error) {
+      console.error("Error deleting post:", error);
+    }
+  };
 
   const isGearOwner = post.userId === currentUser.id;
 
@@ -43,6 +53,11 @@ export const GearDetails = ({ currentUser }) => {
         {isGearOwner && (
           <div className="edit-gear-button">
             <Link to={`/gear/edit/${postId}`}>Edit Gear</Link>
+          </div>
+        )}
+        {isGearOwner && (
+          <div className="delete-gear-button">
+            <button onClick={() => handleDelete(postId)}>Delete</button>
           </div>
         )}
       </div>
