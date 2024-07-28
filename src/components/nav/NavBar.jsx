@@ -11,7 +11,7 @@ export const NavBar = () => {
         <Link to="/gear">All Posts</Link>
       </li>
       <li className="navbar-item">
-        <Link to="/mycollection">My Collection</Link>
+        <Link to={`/mycollection/${currentUser.id}`}>My Collection</Link>
       </li>
       <li className="navbar-item">
         <Link to="/addgear">Add Gear</Link>

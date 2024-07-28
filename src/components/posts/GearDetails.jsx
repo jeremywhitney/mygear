@@ -36,7 +36,13 @@ export const GearDetails = ({ currentUser }) => {
             className="gear-image"
           />
           <div className="gear-info">
-            {isGearOwner ? <div></div> : <div>{post.user?.name}'s</div>}
+            {isGearOwner ? (
+              <div></div>
+            ) : (
+              <div>
+                <Link to={`/profile/${post.userId}`}>{post.user?.name}</Link>'s
+              </div>
+            )}
 
             <h2>
               {post.year} {post.brand?.name} {post.model}

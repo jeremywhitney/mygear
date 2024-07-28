@@ -70,7 +70,7 @@ export const UserProfile = ({ currentUser }) => {
       </div>
       <div className="user-posts">
         {postsCount} pieces of gear in{" "}
-        <Link to="/mycollection">My Collection</Link>
+        <Link to={`/mycollection/${user.id}`}>My Collection</Link>
       </div>
       <div className="user-about">
         {isEditMode ? (

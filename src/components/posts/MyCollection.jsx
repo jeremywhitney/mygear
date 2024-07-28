@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
 import { getAllPosts } from "../services/postService";
+import { getUserById } from "../services/userService";
 import { LargePost } from "./LargePost";
 import { PostFilterBar } from "../filter/PostFilterBar";
 import { SearchBar } from "../filter/SearchBar";
+import { useParams } from "react-router-dom";
 import "./Posts.css";
 import "../filter/Filters.css";
 
 export const MyCollection = ({ currentUser }) => {
+  const { userId } = useParams();
   const [allPosts, setAllPosts] = useState([]);
   const [filteredPosts, setFilteredPosts] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -14,12 +17,15 @@ export const MyCollection = ({ currentUser }) => {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedBrand, setSelectedBrand] = useState("");
   const [forSale, setForSale] = useState(false);
+  const [viewedUser, setViewedUser] = useState(null);
 
   const getAndSetPosts = async () => {
     const postsArray = await getAllPosts();
+    const userIdToUse = userId || currentUser.id;
     const userPosts = postsArray.filter(
-      (post) => post.userId === currentUser.id
+      (post) => post.userId === parseInt(userIdToUse)
     );
+
     setAllPosts(userPosts);
     setFilteredPosts(userPosts);
 
@@ -36,9 +42,17 @@ export const MyCollection = ({ currentUser }) => {
     setBrands(brandList);
   };
 
+  const fetchViewedUser = async () => {
+    if (userId) {
+      const user = await getUserById(userId);
+      setViewedUser(user);
+    }
+  };
+
   useEffect(() => {
     getAndSetPosts();
-  }, [currentUser]);
+    fetchViewedUser();
+  }, [currentUser, userId]);
 
   useEffect(() => {
     let posts = allPosts;
@@ -60,12 +74,15 @@ export const MyCollection = ({ currentUser }) => {
     setFilteredPosts(posts);
   }, [selectedCategory, selectedBrand, forSale, allPosts]);
 
-  // Check if currentUser's collection
-  const isOwnCollection = true;
+  const isOwnCollection = !userId || userId === currentUser.id;
 
   return (
     <div className="my-posts-container">
-      <h1>My Collection</h1>
+      <h1>
+        {isOwnCollection
+          ? "My Collection"
+          : `${viewedUser?.name || "User"}'s Collection`}
+      </h1>
       <SearchBar posts={allPosts} setFilteredPosts={setFilteredPosts} />
       <PostFilterBar
         categories={categories}

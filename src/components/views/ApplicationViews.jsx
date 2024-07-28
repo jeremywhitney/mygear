@@ -41,7 +41,7 @@ export const ApplicationViews = () => {
           element={<EditGear currentUser={currentUser} />}
         />
         <Route
-          path="mycollection"
+          path="mycollection/:userId"
           element={<MyCollection currentUser={currentUser} />}
         />
         <Route 

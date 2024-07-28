@@ -1,23 +1,22 @@
-import { useState } from "react"
-import { useNavigate } from "react-router-dom"
-import "./Login.css"
-import { createUser, getUserByEmail } from "../services/userService"
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { createUser, getUserByEmail } from "../services/userService";
+import "./Login.css";
 
-// TODO: Change this user object to match myGear user object
 export const Register = (props) => {
   const [user, setUser] = useState({
     name: "",
     email: "",
-    cohort: 0,
-  })
-  let navigate = useNavigate()
-
+    location: "",
+    about: "",
+  });
+  let navigate = useNavigate();
 
   const registerNewUser = () => {
     const newUser = {
       ...user,
-      cohort: parseInt(user.cohort), // TODO: Change this
-    }
+      // cohort: parseInt(user.cohort), // TODO: Change this
+    };
 
     createUser(newUser).then((createdUser) => {
       if (createdUser.hasOwnProperty("id")) {
@@ -25,33 +24,32 @@ export const Register = (props) => {
           "mygear_user",
           JSON.stringify({
             id: createdUser.id,
-            staff: createdUser.isStaff, // TODO: Change this
           })
-        )
+        );
 
-        navigate("/")
+        navigate("/");
       }
-    })
-  }
+    });
+  };
 
   const handleRegister = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     getUserByEmail(user.email).then((response) => {
       if (response.length > 0) {
         // Duplicate email. No good.
-        window.alert("Account with that email address already exists")
+        window.alert("Account with that email address already exists");
       } else {
         // Good email, create user.
-        registerNewUser()
+        registerNewUser();
       }
-    })
-  }
+    });
+  };
 
   const updateUser = (evt) => {
-    const copy = { ...user }
-    copy[evt.target.id] = evt.target.value
-    setUser(copy)
-  }
+    const copy = { ...user };
+    copy[evt.target.id] = evt.target.value;
+    setUser(copy);
+  };
 
   return (
     <main className="auth-container">
@@ -83,15 +81,14 @@ export const Register = (props) => {
             />
           </div>
         </fieldset>
-        {/* TODO: Change this */}
-        <fieldset className="auth-fieldset"> 
+        <fieldset className="auth-fieldset">
           <div>
             <input
               onChange={updateUser}
-              type="number"
-              id="cohort"
+              type="text"
+              id="location"
               className="auth-form-input"
-              placeholder="Cohort #"
+              placeholder="Location (city, state)"
               required
             />
           </div>
@@ -103,5 +100,5 @@ export const Register = (props) => {
         </fieldset>
       </form>
     </main>
-  )
-}
+  );
+};
