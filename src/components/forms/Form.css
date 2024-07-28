@@ -112,5 +112,25 @@ form {
   .for-sale-filter {
     margin-top: 10px;
   }
+
+  .ReactModal__Overlay {
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent */
+    z-index: 1000; /* High z-index */
+    position: fixed; /* Fixed positioning */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
   
-  
+  .ReactModal__Content {
+    position: absolute; /* Absolute positioning within overlay */
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Adjust for exact center */
+    background-color: white;
+    border-radius: 4px;
+    padding: 20px;
+    max-width: 500px;
+    width: 100%;
+  }

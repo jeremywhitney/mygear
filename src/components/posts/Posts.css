@@ -129,6 +129,7 @@
     display: block; /* Ensure Link behaves as a block element */
     text-decoration: none; /* Remove underline from Link */
     color: inherit; /* Inherit color from parent */
+    border: 2px solid yellow;
   }
   
   

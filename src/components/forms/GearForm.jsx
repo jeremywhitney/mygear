@@ -3,6 +3,7 @@ import { CategoryDropdown } from "../filter/CategoryDropdown";
 import { ConditionDropdown } from "../filter/ConditionDropdown";
 import { BrandDropdown } from "../filter/BrandDropdown";
 import { ForSaleFilter } from "../filter/ForSaleFilter";
+import { AddBrandModal } from "./AddBrandModal";
 import "./Form.css";
 
 export const GearForm = ({
@@ -23,6 +24,8 @@ export const GearForm = ({
   const [image, setImage] = useState(gear.image || "");
   const [forSale, setForSale] = useState(gear.forSale || false);
   const [errors, setErrors] = useState({});
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [newBrand, setNewBrand] = useState("");
 
   useEffect(() => {
     if (Object.keys(initialData).length > 0) {
@@ -66,6 +69,13 @@ export const GearForm = ({
     }
   };
 
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
+  const handleBrandAdded = (brand) => {
+    setBrand(brand.id);
+    closeModal();
+  };
+
   return (
     <form onSubmit={onSubmit}>
       <CategoryDropdown
@@ -80,7 +90,16 @@ export const GearForm = ({
         selectedBrand={brand}
         setSelectedBrand={setBrand}
       />
+      <button type="button" onClick={openModal}>
+        Add New Brand
+      </button>
       {errors.brand && <p>{errors.brand}</p>}
+
+      <AddBrandModal
+        isOpen={isModalOpen}
+        onRequestClose={closeModal}
+        handleBrandAdded={handleBrandAdded}
+      />
 
       <div>
         <label>Year:</label>
