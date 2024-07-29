@@ -57,7 +57,7 @@ export const GearForm = ({
         userId: currentUser.id,
         brandId: parseInt(brand),
         categoryId: parseInt(category),
-        conditionId: parseInt(condition),
+        conditionId: parseInt(condition) || "",
         model,
         year,
         forSale,
@@ -79,6 +79,7 @@ export const GearForm = ({
   const handleBrandAdded = (newBrand) => {
     setBrands((prevBrands) => {
       const updatedBrands = [...prevBrands, newBrand];
+      console.log("Updated brands list:", updatedBrands);
       return updatedBrands;
     });
     setBrand(newBrand.id);
@@ -108,6 +109,7 @@ export const GearForm = ({
         isOpen={isModalOpen}
         onRequestClose={closeModal}
         onBrandAdded={handleBrandAdded}
+        brands={brands}
       />
 
       <div>

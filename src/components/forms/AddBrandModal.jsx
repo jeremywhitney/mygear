@@ -5,7 +5,12 @@ import "./Form.css";
 
 Modal.setAppElement("#root");
 
-export const AddBrandModal = ({ isOpen, onRequestClose, onBrandAdded }) => {
+export const AddBrandModal = ({
+  isOpen,
+  onRequestClose,
+  onBrandAdded,
+  brands,
+}) => {
   const [brandName, setBrandName] = useState("");
   const [error, setError] = useState("");
 
@@ -16,6 +21,18 @@ export const AddBrandModal = ({ isOpen, onRequestClose, onBrandAdded }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     setError("");
+
+    const newBrandNameLower = brandName.toLowerCase();
+    const isDuplicate = brands.some(
+      (brand) => brand.name.toLowerCase() === newBrandNameLower
+    );
+
+    if (isDuplicate) {
+      alert(
+        "This brand already exists. Please select from the brand dropdown list."
+      );
+      return;
+    }
 
     try {
       const newBrand = await addBrand({ name: brandName });

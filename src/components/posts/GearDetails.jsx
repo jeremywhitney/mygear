@@ -17,7 +17,7 @@ export const GearDetails = ({ currentUser }) => {
   const handleDelete = async (postId) => {
     try {
       await deleteGearPost(postId);
-      navigate("/mycollection");
+      navigate(`/mycollection/${currentUser.id}`);
     } catch (error) {
       console.error("Error deleting post:", error);
     }
