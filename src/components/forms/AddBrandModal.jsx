@@ -47,7 +47,9 @@ export const AddBrandModal = ({ isOpen, onRequestClose, onBrandAdded }) => {
           />
         </div>
         {error && <p className="error">{error}</p>}
-        <button type="submit">Add Brand</button>
+        <button type="button" onClick={handleSubmit}>
+          Add Brand
+        </button>
         <button type="button" onClick={onRequestClose}>
           Cancel
         </button>

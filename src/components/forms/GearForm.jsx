@@ -12,7 +12,7 @@ export const GearForm = ({
   handleSubmit,
   categories = [],
   conditions = [],
-  brands = [],
+  brands: initialBrands = [],
   initialData = {},
 }) => {
   const [category, setCategory] = useState(gear.category || "");
@@ -25,7 +25,7 @@ export const GearForm = ({
   const [forSale, setForSale] = useState(gear.forSale || false);
   const [errors, setErrors] = useState({});
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [newBrand, setNewBrand] = useState("");
+  const [brands, setBrands] = useState(initialBrands);
 
   useEffect(() => {
     if (Object.keys(initialData).length > 0) {
@@ -71,8 +71,17 @@ export const GearForm = ({
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
-  const handleBrandAdded = (brand) => {
-    setBrand(brand.id);
+
+  useEffect(() => {
+    setBrands(initialBrands);
+  }, [initialBrands]);
+
+  const handleBrandAdded = (newBrand) => {
+    setBrands((prevBrands) => {
+      const updatedBrands = [...prevBrands, newBrand];
+      return updatedBrands;
+    });
+    setBrand(newBrand.id);
     closeModal();
   };
 
@@ -98,7 +107,7 @@ export const GearForm = ({
       <AddBrandModal
         isOpen={isModalOpen}
         onRequestClose={closeModal}
-        handleBrandAdded={handleBrandAdded}
+        onBrandAdded={handleBrandAdded}
       />
 
       <div>

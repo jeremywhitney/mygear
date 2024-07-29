@@ -19,3 +19,4 @@ export const BrandDropdown = ({
     </select>
   );
 };
+
