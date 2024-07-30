@@ -2,8 +2,8 @@
 
 body {
   font-family: 'Lato', sans-serif;
-}
-
-#root {
-    background-color: #f0f8ff; 
+  background-color: #f0f8ff; /* Light blue color */
+  margin: 0;
+  padding: 0;
+  min-height: 100vh; /* Ensure body takes up at least the full height of the viewport */
 }
