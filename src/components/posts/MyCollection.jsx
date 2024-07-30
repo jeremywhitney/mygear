@@ -106,7 +106,7 @@ export const MyCollection = ({ currentUser }) => {
             year={post.year}
             forSale={post.forSale}
             description={post.description}
-            image={post.image}
+            image={post.image || "/images/default.jpg"}
             date={post.timestamp}
             isOwnCollection={isOwnCollection}
           />

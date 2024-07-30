@@ -24,6 +24,7 @@ export const GearDetails = ({ currentUser }) => {
   };
 
   const isGearOwner = post.userId === currentUser.id;
+  const imageUrl = post.image || "/images/default.jpg"
 
   return (
     <>
@@ -31,7 +32,7 @@ export const GearDetails = ({ currentUser }) => {
       <div className="gear-details-container">
         <div className="gear-details-content">
           <img
-            src={post.image}
+            src={imageUrl}
             alt={`${post.brand?.name} ${post.model}`}
             className="gear-image"
           />

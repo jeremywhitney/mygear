@@ -56,6 +56,7 @@ export const AddBrandModal = ({
         <div>
           <label htmlFor="brandName">Brand Name:</label>
           <input
+            className="modal-input"
             type="text"
             id="brandName"
             value={brandName}
@@ -64,10 +65,18 @@ export const AddBrandModal = ({
           />
         </div>
         {error && <p className="error">{error}</p>}
-        <button type="button" onClick={handleSubmit}>
+        <button
+          className="add-brand-button"
+          type="button"
+          onClick={handleSubmit}
+        >
           Add Brand
         </button>
-        <button type="button" onClick={onRequestClose}>
+        <button
+          className="cancel-button"
+          type="button"
+          onClick={onRequestClose}
+        >
           Cancel
         </button>
       </form>

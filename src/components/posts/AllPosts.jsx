@@ -60,6 +60,7 @@ export const AllPosts = ({ currentUser }) => {
 
   return (
     <div className="all-posts-container">
+      <h1>All Posts</h1>
       <SearchBar posts={allPosts} setFilteredPosts={setFilteredPosts} />
       <PostFilterBar
         categories={categories}
@@ -76,7 +77,7 @@ export const AllPosts = ({ currentUser }) => {
           <SmallPost
             key={post.id}
             id={post.id}
-            image={post.image}
+            image={post.image || "/images/default.jpg"}
             year={post.year}
             brand={post.brand.name}
             model={post.model}

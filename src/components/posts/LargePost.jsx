@@ -18,7 +18,7 @@ export const LargePost = ({
     <div className="lg-post-container">
       <Link to={`/gear/${id}`} className="post-link">
         <div className="lg-post-content">
-          <img src={image} alt={`${brand} ${model}`}></img>
+          <img className="gear-image" src={image} alt={`${brand} ${model}`}></img>
           <div className="text-content">
             {forSale && <p className="for-sale-status">For Sale</p>}
             <h2>

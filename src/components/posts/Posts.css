@@ -1,219 +1,242 @@
-/* Container for all posts */
-.all-posts-container {
-    border: 2px solid blue; /* Visual aid */
-  }
-  
-  .all-posts {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center; /* Center the grid horizontally */
-    gap: 16px; /* Space between containers */
-    padding: 16px; /* Padding around the container */
-    border: 2px solid green
-  }
+/********** Small Post / All Posts Styling **********/
 
-  /* Small post container */
-  .sm-post-container {
-    flex: 1 1 300px; /* Flex-grow, flex-shrink, and base size */
-    max-width: 300px; /* Set maximum width */
-    min-width: 200px; /* Set minimum width to ensure responsiveness */
-    box-sizing: border-box; /* Include padding and border in width */
-    background-color: #f9f9f9; /* Light background color */
-    border-radius: 8px; /* Rounded corners */
-    padding: 16px; /* Padding inside the container */
-    margin: 5px;
-    text-align: center; /* Center text horizontally */
-    overflow: hidden; /* Ensure content doesn't overflow */
-    border: 2px solid red; /* Visual aid */
-  }
-  
-  /* Flex container for image and text */
-  .sm-post-content {
-    display: flex;
-    align-items: center; /* Center vertically */
-    gap: 16px; /* Space between image and text */
-  }
-  
-  /* Image styling */
-  .sm-post-content img {
-    max-width: 150px; /* Fixed width for image */
-    height: auto; /* Maintain aspect ratio */
-    border-radius: 8px; /* Rounded corners for image */
-  }
-  
-  /* Text content styling */
-  .text-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: left; /* Align text to the left of the container */
-  }
-  
-  /* Year, brand, and model */
-  .text-content h3 {
-    margin: 0; /* Remove default margin */
-    font-size: 1rem; /* Adjust font size */
-  }
-  
-  /* User name styling */
-  .text-content p {
-    font-size: 0.875rem; /* Slightly smaller font size for user name */
-    color: #555; /* Slightly lighter color for user name */
-  }
+.all-posts {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Center the grid horizontally */
+  gap: 16px; /* Space between containers */
+  padding: 16px; /* Padding around the container */
+}
 
-/* Container for My Collection */
-  .my-posts-container {
-    border: 2px solid blue; /* Visual aid */
-  }
+.sm-post-container {
+  flex: 1 1 300px; /* Flex-grow, flex-shrink, and base size */
+  max-width: 300px; /* Set maximum width */
+  min-width: 200px; /* Set minimum width to ensure responsiveness */
+  box-sizing: border-box; /* Include padding and border in width */
+  background-color: rgba(255, 255, 255, .75); /* Slight transparency */
+  border-radius: 8px; /* Rounded corners */
+  padding: 16px; /* Padding inside the container */
+  margin: 5px;
+  text-align: center; /* Center text horizontally */
+  overflow: hidden; /* Ensure content doesn't overflow */
+  
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+}
 
-  .my-posts {
-    padding: 16px; /* Padding around the container */
-    border: 2px solid green
-  }
+.sm-post-container:hover {
+  background-color: #ffffff; /* Solid white background on hover */
+  transform: translateY(-5px); /* Lift effect on hover */
+}
 
-/* Large post container */
-  .lg-post-container {
-    width: 66%; /* 2/3rds of the page width */
-    margin: 15px auto; /* Center align */
-    position: relative; /* Needed for absolute positioning of the forSale status */
-    padding: 20px;
-    border: 2px solid red; /* Visual aid */
-    border-radius: 8px; /* Optional rounded corners */
-    background-color: #f9f9f9; /* Optional background color */
-    box-sizing: border-box;
-  }
-  
-  .lg-post-content {
-    display: flex;
-    align-items: center; 
-  }
-  
-  .lg-post-content img {
-    width: 25%; /* 1/4 of the container width */
-    margin-right: 20px; /* Space between image and text */
-    border-radius: 8px; /* Optional rounded corners */
-  }
-  
-  .text-content {
-    flex: 1; /* Fill the remaining space */
-    position: relative; /* Needed for positioning the forSale status */
-  }
-  
-  .for-sale-status {
-    position: absolute; /* Position in the top right corner */
-    top: 10px;
-    right: 10px;
-    background-color: #ffeb3b; /* Optional background color for visibility */
-    padding: 5px;
-    border-radius: 4px; /* Optional rounded corners */
-  }
+.sm-post-content {
+  display: flex;
+  align-items: center; /* Center vertically */
+  gap: 16px; /* Space between image and text */
+}
 
-  h2 {
-    margin: 5px
-  }
-  
-  h3 {
-    margin-top: 0;
-  }
-  
-  p {
-    margin: 5px 0;
-  }
+.sm-post-content img {
+  object-fit: scale-down;
+  width: 150px;
+  height: 200px;
+  border-radius: 8px; /* Rounded corners for image */
+}
 
-  .description {
-    margin: 15px 0; /* Add space around the description */
-    padding-left: 20px; /* Indent the description from the left */
-  }
-  
-  .post-link {
-    display: block; /* Ensure Link behaves as a block element */
-    text-decoration: none; /* Remove underline from Link */
-    color: inherit; /* Inherit color from parent */
-    border: 2px solid yellow;
-  }
-  
-  
-  .gear-details-container {
-    width: 70%;
-    margin: 3rem auto;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .gear-details-content {
-    display: flex;
-    align-items: flex-start;
-  }
-  
-  .gear-image {
-    width: 50%;
-    height: auto;
-    border-radius: 8px;
-    margin-right: 20px;
-  }
-  
-  .gear-info {
-    flex: 1;
-  }
+.text-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left; /* Align text to the left of the container */
+}
 
-  .gear-info p {
-    margin: 2rem 2rem;
-  }
-  
-  .gear-info h2 {
-    margin-top: 0;
-  }
-  
-  .for-sale {
-    font-weight: bold;
-    color: red;
-    margin-top: 10px;
-  }
-  
-  .gear-info div {
-    margin-bottom: 10px;
-  }
-  
-  .gear-info .description {
-    margin-top: 20px;
-    text-indent: 20px;
-  }
-  
-  .button-container {
-    display: flex;
-    justify-content: space-evenly;
-    padding: 5px;
-  }
+.text-content h3 {
+  margin: 0; /* Remove default margin */
+  font-size: 1rem; /* Adjust font size */
+  color: #333; /* Darker text color */
+}
 
-  .button {
-    padding: 10px 20px;
-    font-size: 1em;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    width: auto;
-  }
+.text-content p {
+  font-size: 0.875rem; /* Slightly smaller font size for user name */
+  color: #666; /* Medium gray color for user name */
+}
 
-  .edit-gear-button {
-    background-color: #ffc107; 
-  }
+/********** Large Post / My Collection Styling **********/
+
+.my-posts-container {
+  background-color: #f0f8ff; /* Light blue background for the entire container */
+}
+
+.my-posts {
+  padding: 16px; /* Padding around the container */
+  background-color: #f0f8ff; /* Light blue background */
+}
+
+.lg-post-container {
+  width: 66%; /* 2/3rds of the page width */
+  margin: 15px auto; /* Center align */
+  position: relative; /* Needed for absolute positioning of the forSale status */
+  padding: 20px;
+  border-radius: 8px; /* Optional rounded corners */
+  background-color: rgba(255, 255, 255, .75); /* Slight transparency */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
   
-  .edit-gear-button:hover {
-    background-color: #e0a800;
-  }
+}
 
-  .edit-gear-button-link {
-    text-decoration: none; 
-    color: white;
-  }
+.lg-post-container:hover {
+  background-color: #ffffff; /* Solid white background on hover */
+  transform: translateY(-5px); /* Lift effect on hover */
+}
 
-  .delete-gear-button {
-    background-color: firebrick;
-  }
+.lg-post-content {
+  display: flex;
+  align-items: center; 
+}
 
-  .delete-gear-button:hover {
-    background-color: maroon;
-  }
-  
+.lg-post-content img {
+  width: 25%; /* 1/4 of the container width */
+  height: 200px;
+  object-fit: scale-down;
+  margin-right: 20px; /* Space between image and text */
+  border-radius: 8px; /* Optional rounded corners */
+}
+
+.text-content {
+  flex: 1; /* Fill the remaining space */
+  position: relative; /* Needed for positioning the forSale status */
+}
+
+.for-sale-status {
+  position: absolute; /* Position in the top right corner */
+  top: 10px;
+  right: 10px;
+  background-color: #ffeb3b; /* Bright yellow for attention */
+  padding: 5px;
+  border-radius: 4px; /* Optional rounded corners */
+  font-weight: bold;
+  color: #333; /* Darker text color for contrast */
+}
+
+h2 {
+  margin: 5px 0;
+  font-size: 1.5rem; /* Larger heading size */
+  color: #333; /* Darker text color */
+}
+
+h3 {
+  margin-top: 0;
+}
+
+p {
+  margin: 5px 0;
+  color: #555; /* Slightly lighter color for text */
+}
+
+.description {
+  margin: 15px 0; /* Add space around the description */
+  padding-left: 20px; /* Indent the description from the left */
+}
+
+.post-link {
+  display: block; /* Ensure Link behaves as a block element */
+  text-decoration: none; /* Remove underline from Link */
+  padding: 5px; /* Padding around the link */
+  border-radius: 4px; /* Rounded corners for the link */
+  transition: background-color 0.3s, color 0.3s; /* Smooth transition effects */
+}
+
+.post-link:hover {
+  color: #fff; /* White text on hover */
+}
+
+/********** Gear Details Styling **********/
+
+.gear-details-container {
+  width: 70%;
+  margin: 3rem auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Slightly deeper shadow for emphasis */
+  background-color: #ffffff; /* Clean white background */
+}
+
+.gear-details-content {
+  display: flex;
+  align-items: flex-start;
+}
+
+.gear-image {
+  width: 50%;
+  height: 600px;
+  object-fit: scale-down;
+  border-radius: 8px;
+  margin-right: 20px;
+}
+
+.gear-info {
+  flex: 1;
+}
+
+.gear-info p {
+  margin: 2rem 2rem;
+  color: #555; /* Slightly lighter color for text */
+}
+
+.gear-info h2 {
+  margin-top: 0;
+  color: #333; /* Darker text color */
+}
+
+.for-sale {
+  font-weight: bold;
+  color: #ff5722; /* Bright orange-red for sale notice */
+  margin-top: 10px;
+}
+
+.gear-info div {
+  margin-bottom: 10px;
+}
+
+.gear-info .description {
+  margin-top: 20px;
+  text-indent: 20px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 5px;
+}
+
+.button {
+  padding: 10px 20px;
+  font-size: 1em;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: auto;
+  transition: background-color 0.3s, transform 0.3s; /* Smooth transition effects */
+}
+
+.edit-gear-button {
+  background-color: #ffc107; /* Bright yellow for edit */
+}
+
+.edit-gear-button-link {
+  text-decoration: none;
+  color: white
+}
+
+.edit-gear-button:hover {
+  background-color: #e0a800; /* Darker yellow on hover */
+  transform: scale(1.05); /* Slight zoom effect on hover */
+}
+
+.delete-gear-button {
+  background-color: #f44336; /* Bright red for delete */
+  color: #fff;
+}
+
+.delete-gear-button:hover {
+  background-color: #d32f2f; /* Darker red on hover */
+  transform: scale(1.05); /* Slight zoom effect on hover */
+}

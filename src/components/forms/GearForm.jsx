@@ -100,7 +100,7 @@ export const GearForm = ({
         selectedBrand={brand}
         setSelectedBrand={setBrand}
       />
-      <button type="button" onClick={openModal}>
+      <button className="new-brand-button" type="button" onClick={openModal}>
         Add New Brand
       </button>
       {errors.brand && <p>{errors.brand}</p>}
@@ -153,7 +153,7 @@ export const GearForm = ({
           onChange={(e) => setImage(e.target.value)}
         />
       </div>
-      <button type="submit">Save</button>
+      <button className="save-button" type="submit">Save</button>
     </form>
   );
 };
