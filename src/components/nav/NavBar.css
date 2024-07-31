@@ -1,0 +1,32 @@
+/* Style for the navbar container */
+.navbar {
+    display: flex; /* Use flexbox to arrange items horizontally */
+    justify-content: space-between; /* Space items evenly across the navbar */
+    align-items: center; /* Center items vertically */
+    padding: 10px 20px; 
+    background-color: #999;
+    border-radius: 4px; /* Rounded corners for the navbar */
+    max-width: 50%; /* Limit the width to 50% of the parent container */
+    margin: 5px auto; /* Center the navbar horizontally */
+  }
+  
+  /* Style for each navbar item */
+  .navbar-item {
+    list-style-type: none; /* Remove default list styling */
+    margin: 0 15px; /* Space between navbar items */
+  }
+  
+  /* Style for navbar links */
+  .navbar-item a {
+    color: #fff; /* White text color */
+    text-decoration: none; /* Remove underline from links */
+    font-weight: bold; /* Bold text */
+    padding: 10px; /* Add some padding around the text */
+  }
+  
+  /* Hover effect for navbar links */
+  .navbar-item a:hover {
+    background-color: #555; /* Darker background color on hover */
+    border-radius: 4px; /* Slightly rounded corners on hover */
+  }
+  

@@ -1,0 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+
+body {
+  font-family: 'Lato', sans-serif;
+  background-color: #f0f8ff; /* Light blue color */
+  margin: 0;
+  padding: 0;
+  min-height: 100vh; /* Ensure body takes up at least the full height of the viewport */
+}
