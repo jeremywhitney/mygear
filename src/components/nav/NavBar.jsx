@@ -16,7 +16,9 @@ export const NavBar = () => {
       <li className="navbar-item">
         <Link to="/addgear">Add Gear</Link>
       </li>
-      {/* Wishlist */}
+      <li className="navbar-item">
+        <Link to="/wishlist">Wishlist</Link>
+      </li>
       <li className="navbar-item">
         <Link to={`/profile/${currentUser.id}`}>Profile</Link>
       </li>
