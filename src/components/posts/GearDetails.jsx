@@ -89,7 +89,6 @@ export const GearDetails = ({ currentUser }) => {
               model={post.model}
               notes=""
               onSuccess={() => {
-                // Success handling if needed
               }}
               onError={(message) => {
                 console.error("Error adding to wishlist:", message);
