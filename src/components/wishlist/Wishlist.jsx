@@ -5,29 +5,36 @@ import {
   getCombinedWFWPosts,
   getCombinedWFPPosts,
 } from "../services/wishlistService";
+import { AddToWishlistModal } from "../forms/AddToWishlistModal.jsx";
 
 export const Wishlist = ({ currentUser }) => {
   const [wishlistItems, setWishlistItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const fetchAndCombineWishlistItems = async () => {
+    try {
+      // Fetch and combine both types of wishlist items
+      const [wfwItems, wfpItems] = await Promise.all([
+        getCombinedWFWPosts(),
+        getCombinedWFPPosts(),
+      ]);
+      setWishlistItems([...wfwItems, ...wfpItems]);
+    } catch (err) {
+      setError("Failed to fetch wishlist items.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    const fetchWishlistItems = async () => {
-      try {
-        // Fetch and combine both types of wishlist items
-        const [wfwItems, wfpItems] = await Promise.all([
-          getCombinedWFWPosts(),
-          getCombinedWFPPosts(),
-        ]);
-        setWishlistItems([...wfwItems, ...wfpItems]);
-      } catch (err) {
-        setError("Failed to fetch wishlist items.");
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchWishlistItems();
+    fetchAndCombineWishlistItems();
   }, []);
+
+  const handleAdd = async () => {
+    await fetchAndCombineWishlistItems();
+  };
 
   const handleDelete = async (id, type) => {
     try {
@@ -45,6 +52,9 @@ export const Wishlist = ({ currentUser }) => {
     }
   };
 
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
+
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -56,6 +66,9 @@ export const Wishlist = ({ currentUser }) => {
   return (
     <div className="wishlist-container">
       <h1>My Wishlist</h1>
+      <button className="add-to-wishlist-button" onClick={openModal}>
+        Add to Wishlist
+      </button>
       {wishlistItems.length === 0 ? (
         <p>Your wishlist is empty.</p>
       ) : (
@@ -89,6 +102,12 @@ export const Wishlist = ({ currentUser }) => {
           ))}
         </ul>
       )}
+      <AddToWishlistModal
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        userId={currentUser.id}
+        onAdd={handleAdd}
+      />
     </div>
   );
 };

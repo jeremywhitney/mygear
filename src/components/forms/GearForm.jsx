@@ -79,7 +79,6 @@ export const GearForm = ({
   const handleBrandAdded = (newBrand) => {
     setBrands((prevBrands) => {
       const updatedBrands = [...prevBrands, newBrand];
-      console.log("Updated brands list:", updatedBrands);
       return updatedBrands;
     });
     setBrand(newBrand.id);

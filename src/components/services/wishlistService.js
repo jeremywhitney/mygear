@@ -1,10 +1,12 @@
+import { getAllPosts } from "./postService";
+
 // Fetches all wishlist items in wishlistFromWishlist array
 export const getAllWFWPosts = async () => {
     const response = await fetch(`http://localhost:8088/wishlistsFromWishlist?_expand=brand`);
     return await response.json();
   };
 
-// Combine wishlist items from the Wishlist view
+// Add type: "fromWishList" to wishlistFromWishlist items
 export const getCombinedWFWPosts = async () => {
     const wishlistPosts = await getAllWFWPosts();
   
@@ -20,12 +22,6 @@ export const getAllWFPPosts = async () => {
     return await response.json();
   };
   
-// Fetches all posts to include the brand data
-export const getAllPosts = async () => {
-const response = await fetch(`http://localhost:8088/posts?_expand=brand`);
-return await response.json();
-};
-  
 // Combine wishlist items with post and brand data
 export const getCombinedWFPPosts = async () => {
     const [wishlistPosts, posts] = await Promise.all([getAllWFPPosts(), getAllPosts()]);
@@ -33,6 +29,7 @@ export const getCombinedWFPPosts = async () => {
     // Create a map for quick lookups
     const postMap = new Map(posts.map(post => [post.id, post]));
   
+    // Add type: "fromPost" to wishlistFromPost items
     return wishlistPosts.map(wishlistPost => ({
       ...wishlistPost,
       post: postMap.get(wishlistPost.postId) || {},
@@ -52,7 +49,7 @@ const response = await fetch(`http://localhost:8088/wishlistsFromWishlist/`, {
 return response.json();
 };
 
-// Creates a new item in the wishlistFromPost array when a user adds an item to their wishlist from a post
+// Creates a new item in the wishlistFromPost array when a user adds an item to their wishlist from another users post
 export const createWFPPost = async (wishlistPost) => {
     const response = await fetch(`http://localhost:8088/wishlistsFromPost/`, {
         method: "POST",
@@ -78,5 +75,5 @@ return fetch(`http://localhost:8088/wishlistsFromPost/${wishlistId}`, {
 });
 };
 
-/* TODO: Create a PUT or POST function to handle the creation of a new WFW item whenever a post tied to a WFP item is deleted*/
+/* TODO: Create a PUT or POST function to handle the creation of a new WFW item whenever a post tied to a WFP item is deleted */
   
