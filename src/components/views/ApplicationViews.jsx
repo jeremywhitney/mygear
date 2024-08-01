@@ -45,7 +45,7 @@ export const ApplicationViews = () => {
         />
         <Route path="addgear" element={<AddGear currentUser={currentUser} />} />
         <Route
-          path="wishlist"
+          path="wishlist/:userId"
           element={<Wishlist currentUser={currentUser} />}
         />
         <Route

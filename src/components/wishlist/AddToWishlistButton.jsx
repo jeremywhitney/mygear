@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { createWFPPost, createWFWPost } from "../services/wishlistService";
 
 export const AddToWishlistButton = ({
@@ -11,6 +12,8 @@ export const AddToWishlistButton = ({
   onSuccess,
   onError,
 }) => {
+  const navigate = useNavigate();
+
   const handleClick = async () => {
     try {
       let response;
@@ -26,12 +29,13 @@ export const AddToWishlistButton = ({
       } else if (wishlistType === "fromPost") {
         const wishlistPost = {
           userId: userId,
-          postId: postId,
+          postId: parseInt(postId),
           notes: notes,
         };
         response = await createWFPPost(wishlistPost);
       }
       onSuccess(response);
+      navigate(`/wishlist/${userId}`)
     } catch (error) {
       onError(error.message);
     }

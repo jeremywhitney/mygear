@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { deleteGearPost, getPostById } from "../services/postService";
 import "./Posts.css";
+import { AddToWishlistButton } from "../wishlist/AddToWishlistButton";
 
 export const GearDetails = ({ currentUser }) => {
   const [post, setPost] = useState({});
@@ -24,7 +25,7 @@ export const GearDetails = ({ currentUser }) => {
   };
 
   const isGearOwner = post.userId === currentUser.id;
-  const imageUrl = post.image || "/images/default.jpg"
+  const imageUrl = post.image || "/images/default.jpg";
 
   return (
     <>
@@ -77,6 +78,23 @@ export const GearDetails = ({ currentUser }) => {
                 Delete
               </button>
             </div>
+          )}
+          {!isGearOwner && (
+            <AddToWishlistButton
+              userId={currentUser.id}
+              postId={postId}
+              wishlistType="fromPost"
+              year={post.year}
+              brandId={post.brand?.id}
+              model={post.model}
+              notes=""
+              onSuccess={() => {
+                // Success handling if needed
+              }}
+              onError={(message) => {
+                console.error("Error adding to wishlist:", message);
+              }}
+            />
           )}
         </div>
       </div>

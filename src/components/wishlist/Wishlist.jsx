@@ -15,10 +15,9 @@ export const Wishlist = ({ currentUser }) => {
 
   const fetchAndCombineWishlistItems = async () => {
     try {
-      // Fetch and combine both types of wishlist items
       const [wfwItems, wfpItems] = await Promise.all([
-        getCombinedWFWPosts(),
-        getCombinedWFPPosts(),
+        getCombinedWFWPosts(currentUser.id),
+        getCombinedWFPPosts(currentUser.id),
       ]);
       setWishlistItems([...wfwItems, ...wfpItems]);
     } catch (err) {
@@ -30,7 +29,7 @@ export const Wishlist = ({ currentUser }) => {
 
   useEffect(() => {
     fetchAndCombineWishlistItems();
-  }, []);
+  }, [currentUser.id]);
 
   const handleAdd = async () => {
     await fetchAndCombineWishlistItems();

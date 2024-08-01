@@ -1,14 +1,14 @@
 import { getAllPosts } from "./postService";
 
 // Fetches all wishlist items in wishlistFromWishlist array
-export const getAllWFWPosts = async () => {
-    const response = await fetch(`http://localhost:8088/wishlistsFromWishlist?_expand=brand`);
+export const getAllWFWPosts = async (userId) => {
+    const response = await fetch(`http://localhost:8088/wishlistsFromWishlist?userId=${userId}&_expand=brand`);
     return await response.json();
   };
 
 // Add type: "fromWishList" to wishlistFromWishlist items
-export const getCombinedWFWPosts = async () => {
-    const wishlistPosts = await getAllWFWPosts();
+export const getCombinedWFWPosts = async (userId) => {
+    const wishlistPosts = await getAllWFWPosts(userId);
   
     return wishlistPosts.map(wishlistPost => ({
       ...wishlistPost,
@@ -17,14 +17,14 @@ export const getCombinedWFWPosts = async () => {
   };
 
 // Fetches all wishlist items in wishlistFromPost array
-export const getAllWFPPosts = async () => {
-    const response = await fetch(`http://localhost:8088/wishlistsFromPost`);
+export const getAllWFPPosts = async (userId) => {
+    const response = await fetch(`http://localhost:8088/wishlistsFromPost?userId=${userId}`);
     return await response.json();
   };
   
 // Combine wishlist items with post and brand data
-export const getCombinedWFPPosts = async () => {
-    const [wishlistPosts, posts] = await Promise.all([getAllWFPPosts(), getAllPosts()]);
+export const getCombinedWFPPosts = async (userId) => {
+    const [wishlistPosts, posts] = await Promise.all([getAllWFPPosts(userId), getAllPosts()]);
   
     // Create a map for quick lookups
     const postMap = new Map(posts.map(post => [post.id, post]));
