@@ -26,7 +26,7 @@ export const AddToWishlistModal = ({ isOpen, onClose, userId, onAdd }) => {
     }
   }, [isOpen]);
 
-  const handleBrandChange = async (event) => {
+  const handleBrandChange = (event) => {
     const input = event.target.value;
     setBrand(input);
 
@@ -42,27 +42,28 @@ export const AddToWishlistModal = ({ isOpen, onClose, userId, onAdd }) => {
   };
 
   const handleAddToWishlist = async () => {
-    try {
-      let brandId;
+    let brandId;
 
-      if (newBrand) {
-        const createdBrand = await addBrand({ name: brand });
-        brandId = createdBrand.id;
-      } else {
-        const existingBrand = brandSuggestions.find((b) => b.name === brand);
-        brandId = existingBrand ? existingBrand.id : null;
-      }
-
-      return {
-        userId,
-        year,
-        brandId,
-        model,
-        notes,
-      };
-    } catch (err) {
-      setError("Failed to add to wishlist.");
+    if (newBrand) {
+      const createdBrand = await addBrand({ name: brand });
+      brandId = createdBrand.id;
+    } else {
+      const existingBrand = brandSuggestions.find((b) => b.name === brand);
+      brandId = existingBrand ? existingBrand.id : null;
     }
+
+    if (!brandId) {
+      setError("Brand ID is null or undefined.");
+      return;
+    }
+
+    return {
+      userId,
+      year: parseInt(year),
+      brandId,
+      model,
+      notes,
+    };
   };
 
   return (
@@ -122,7 +123,7 @@ export const AddToWishlistModal = ({ isOpen, onClose, userId, onAdd }) => {
       {error && <p className="error">{error}</p>}
       <AddToWishlistButton
         userId={userId}
-        wishlistType="fromWishlist" 
+        wishlistType="fromWishlist"
         year={year}
         brandId={
           newBrand ? null : brandSuggestions.find((b) => b.name === brand)?.id

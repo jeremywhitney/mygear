@@ -11,31 +11,26 @@ export const AddToWishlistButton = ({
   notes = "",
   onSuccess,
   onError,
+  handleAddToWishlist,
 }) => {
   const navigate = useNavigate();
 
   const handleClick = async () => {
     try {
       let response;
-      if (wishlistType === "fromWishlist") {
-        const wishlistPost = {
-          userId: userId,
-          year: parseInt(year),
-          brandId: brandId,
-          model: model,
-          notes: notes,
-        };
-        response = await createWFWPost(wishlistPost);
-      } else if (wishlistType === "fromPost") {
-        const wishlistPost = {
-          userId: userId,
-          postId: parseInt(postId),
-          notes: notes,
-        };
-        response = await createWFPPost(wishlistPost);
+      const wishlistData = await handleAddToWishlist();
+
+      if (!wishlistData) {
+        throw new Error("No wishlist data returned.");
       }
+
+      if (wishlistType === "fromWishlist")
+        response = await createWFWPost(wishlistData);
+      else if (wishlistType === "fromPost")
+        response = await createWFPPost(wishlistData);
+
       onSuccess(response);
-      navigate(`/wishlist/${userId}`)
+      navigate(`/wishlist/${userId}`);
     } catch (error) {
       onError(error.message);
     }
