@@ -4,7 +4,7 @@ import { deleteGearPost, getPostById } from "../services/postService";
 import "./Posts.css";
 import { AddToWishlistButton } from "../wishlist/AddToWishlistButton";
 
-export const GearDetails = ({ currentUser }) => {
+export const GearDetails = ({ currentUser, handleAddToWishlist }) => {
   const [post, setPost] = useState({});
   const { postId } = useParams();
   const navigate = useNavigate();
