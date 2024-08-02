@@ -15,19 +15,23 @@ export const AddToWishlistButton = ({
   const handleClick = async () => {
     try {
       let response;
-      let wishlistData;
 
       if (wishlistType === "fromWishlist") {
-        wishlistData = await handleAddToWishlist();
-        if (!wishlistData) throw new Error("No wishlist data returned.");
+        const wishlistData = await handleAddToWishlist();
+        if (!wishlistData) {
+          throw new Error("No wishlist data returned.");
+        }
         response = await createWFWPost(wishlistData);
-      } else if (wishlistType === "fromPost")
-        wishlistData = {
+      } else if (wishlistType === "fromPost") {
+        const wishlistData = {
           userId,
           postId: parseInt(postId),
           notes,
         };
-      response = await createWFPPost(wishlistData);
+        response = await createWFPPost(wishlistData);
+      } else {
+        throw new Error("Invalid wishlist type.");
+      }
 
       onSuccess(response);
       navigate(`/wishlist/${userId}`);

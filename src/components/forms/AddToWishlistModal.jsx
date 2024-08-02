@@ -83,6 +83,7 @@ export const AddToWishlistModal = ({ isOpen, onClose, userId, onAdd }) => {
           id="year"
           value={year}
           onChange={(event) => setYear(event.target.value)}
+          autoComplete="off"
         />
       </div>
       <div>
@@ -93,6 +94,7 @@ export const AddToWishlistModal = ({ isOpen, onClose, userId, onAdd }) => {
           id="brand"
           value={brand}
           onChange={handleBrandChange}
+          autoComplete="off"
         />
         {newBrand && (
           <p className="error">
@@ -108,6 +110,7 @@ export const AddToWishlistModal = ({ isOpen, onClose, userId, onAdd }) => {
           id="model"
           value={model}
           onChange={(event) => setModel(event.target.value)}
+          autoComplete="off"
         />
       </div>
       <div>
@@ -118,6 +121,7 @@ export const AddToWishlistModal = ({ isOpen, onClose, userId, onAdd }) => {
           id="notes"
           value={notes}
           onChange={(event) => setNotes(event.target.value)}
+          autoComplete="off"
         />
       </div>
       {error && <p className="error">{error}</p>}
