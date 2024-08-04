@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
-import { createWFPPost, createWFWPost } from "../services/wishlistService";
+import { createWishlistPost } from "../services/wishlistService";
+import { getPostById } from "../services/postService";
 
 export const AddToWishlistButton = ({
   userId,
@@ -21,14 +22,25 @@ export const AddToWishlistButton = ({
         if (!wishlistData) {
           throw new Error("No wishlist data returned.");
         }
-        response = await createWFWPost(wishlistData);
+        response = await createWishlistPost(wishlistData);
       } else if (wishlistType === "fromPost") {
+        // Fetch post details using postId
+        const postDetails = await getPostById(postId);
+        if (!postDetails) {
+          throw new Error("Failed to fetch post details.");
+        }
+
+        // Extract relevant data from post details
         const wishlistData = {
           userId,
-          postId: parseInt(postId),
+          year: parseInt(postDetails.year),
+          brandId: postDetails.brandId,
+          model: postDetails.model,
           notes,
         };
-        response = await createWFPPost(wishlistData);
+
+        // Create new wishlist object
+        response = await createWishlistPost(wishlistData);
       } else {
         throw new Error("Invalid wishlist type.");
       }

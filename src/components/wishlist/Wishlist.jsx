@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
 import {
-  deleteWFWPost,
-  deleteWFPPost,
-  getCombinedWFWPosts,
-  getCombinedWFPPosts,
+  deleteWishlistPost,
+  getCombinedWishlistPosts,
 } from "../services/wishlistService";
 import { AddToWishlistModal } from "../forms/AddToWishlistModal.jsx";
 
@@ -13,13 +11,10 @@ export const Wishlist = ({ currentUser }) => {
   const [error, setError] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const fetchAndCombineWishlistItems = async () => {
+  const fetchWishlistItems = async () => {
     try {
-      const [wfwItems, wfpItems] = await Promise.all([
-        getCombinedWFWPosts(currentUser.id),
-        getCombinedWFPPosts(currentUser.id),
-      ]);
-      setWishlistItems([...wfwItems, ...wfpItems]);
+      const items = await getCombinedWishlistPosts(currentUser.id);
+      setWishlistItems(items);
     } catch (err) {
       setError("Failed to fetch wishlist items.");
     } finally {
@@ -28,23 +23,19 @@ export const Wishlist = ({ currentUser }) => {
   };
 
   useEffect(() => {
-    fetchAndCombineWishlistItems();
+    fetchWishlistItems();
   }, [currentUser.id]);
 
   const handleAdd = async () => {
-    await fetchAndCombineWishlistItems();
+    await fetchWishlistItems();
   };
 
-  const handleDelete = async (id, type) => {
+  const handleDelete = async (id) => {
     try {
-      if (type === "fromWishlist") {
-        await deleteWFWPost(id);
-      } else if (type === "fromPost") {
-        await deleteWFPPost(id);
-      }
+      await deleteWishlistPost(id);
       // Update state after deletion
       setWishlistItems((prevItems) =>
-        prevItems.filter((item) => item.id !== id || item.type !== type)
+        prevItems.filter((item) => item.id !== id)
       );
     } catch (err) {
       setError("Failed to delete wishlist item.");
@@ -73,18 +64,11 @@ export const Wishlist = ({ currentUser }) => {
       ) : (
         <ul>
           {wishlistItems.map((item) => (
-            <li key={`${item.id}-${item.type}`} className="wishlist-item">
+            <li key={item.id} className="wishlist-item">
               <p>
-                {item.type === "fromWishlist" ? (
-                  <>
-                    <strong>{item.year}</strong> {item.brand?.name} {item.model}
-                  </>
-                ) : (
-                  <>
-                    <strong>{item.post?.year}</strong> {item.post?.brand?.name}{" "}
-                    {item.post?.model}{" "}
-                  </>
-                )}
+                <strong>{item.year || item.post?.year}</strong>{" "}
+                {item.brand?.name || item.post?.brand?.name}{" "}
+                {item.model || item.post?.model}
               </p>
               <p>
                 <em>Notes: {item.notes}</em>
@@ -92,7 +76,7 @@ export const Wishlist = ({ currentUser }) => {
               <div className="wishlist-item-actions">
                 <button
                   className="remove-button"
-                  onClick={() => handleDelete(item.id, item.type)}
+                  onClick={() => handleDelete(item.id)}
                 >
                   Remove
                 </button>

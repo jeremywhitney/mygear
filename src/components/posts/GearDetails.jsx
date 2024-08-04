@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { deleteGearPost, getPostById } from "../services/postService";
-import "./Posts.css";
 import { AddToWishlistButton } from "../wishlist/AddToWishlistButton";
+import "./Posts.css";
 
-export const GearDetails = ({ currentUser, handleAddToWishlist }) => {
+export const GearDetails = ({ currentUser }) => {
   const [post, setPost] = useState({});
   const { postId } = useParams();
   const navigate = useNavigate();

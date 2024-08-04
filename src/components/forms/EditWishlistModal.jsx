@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import { addBrand, getBrands } from "../services/brandService";
-import { AddToWishlistButton } from "../wishlist/AddToWishlistButton.jsx";
 import { WishlistModal } from "./WishlistModal.jsx";
 
-export const AddToWishlistModal = ({ isOpen, onClose, userId, onAdd }) => {
+export const EditWishlistModal = ({ isOpen, onClose, userId, wishlistItem, onUpdate }) => {
   const [year, setYear] = useState("");
   const [brand, setBrand] = useState("");
   const [brandSuggestions, setBrandSuggestions] = useState([]);
@@ -27,6 +26,15 @@ export const AddToWishlistModal = ({ isOpen, onClose, userId, onAdd }) => {
     }
   }, [isOpen]);
 
+  useEffect(() => {
+    if (wishlistItem) {
+      setYear(wishlistItem.year || "");
+      setBrand(wishlistItem.brandName || "");
+      setModel(wishlistItem.model || "");
+      setNotes(wishlistItem.notes || "");
+    }
+  }, [wishlistItem]);
+
   const handleBrandChange = (event) => {
     const input = event.target.value;
     setBrand(input);
@@ -48,7 +56,7 @@ export const AddToWishlistModal = ({ isOpen, onClose, userId, onAdd }) => {
     setFilteredBrandSuggestions([]);
   };
 
-  const handleAddToWishlist = async () => {
+  const handleEditWishlistItem = async () => {
     let brandId;
 
     if (newBrand) {
@@ -65,6 +73,7 @@ export const AddToWishlistModal = ({ isOpen, onClose, userId, onAdd }) => {
     }
 
     return {
+      id: wishlistItem.id,
       userId,
       year: parseInt(year),
       brandId,
@@ -75,7 +84,7 @@ export const AddToWishlistModal = ({ isOpen, onClose, userId, onAdd }) => {
 
   return (
     <WishlistModal isOpen={isOpen} onClose={onClose}>
-      <h2>Add to Wishlist</h2>
+      <h2>Edit Wishlist Item</h2>
       <div>
         <label htmlFor="year">Year:</label>
         <input
@@ -145,29 +154,8 @@ export const AddToWishlistModal = ({ isOpen, onClose, userId, onAdd }) => {
         />
       </div>
       {error && <p className="error">{error}</p>}
-      <AddToWishlistButton
-        userId={userId}
-        wishlistType="fromWishlist"
-        year={year}
-        brandId={
-          newBrand ? null : brandSuggestions.find((b) => b.name === brand)?.id
-        }
-        model={model}
-        notes={notes}
-        onSuccess={() => {
-          onAdd();
-          onClose();
-          setYear("");
-          setBrand("");
-          setModel("");
-          setNotes("");
-          setError("");
-          setBrandSuggestions([]);
-          setFilteredBrandSuggestions([]);
-        }}
-        onError={(message) => setError(message)}
-        handleAddToWishlist={handleAddToWishlist}
-      />
+      
     </WishlistModal>
   );
 };
+

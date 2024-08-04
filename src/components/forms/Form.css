@@ -110,6 +110,7 @@ button {
   box-sizing: border-box; /* Include padding and border in width */
 }
 
+/* Brand input brand suggestions dropdown styling */
 .suggestions-list {
   position: absolute;
   background: white;
