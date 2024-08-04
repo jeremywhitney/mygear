@@ -7,6 +7,7 @@ export const AddToWishlistModal = ({ isOpen, onClose, userId, onAdd }) => {
   const [year, setYear] = useState("");
   const [brand, setBrand] = useState("");
   const [brandSuggestions, setBrandSuggestions] = useState([]);
+  const [filteredBrandSuggestions, setFilteredBrandSuggestions] = useState([]);
   const [newBrand, setNewBrand] = useState(false);
   const [model, setModel] = useState("");
   const [notes, setNotes] = useState("");
@@ -34,11 +35,17 @@ export const AddToWishlistModal = ({ isOpen, onClose, userId, onAdd }) => {
       const filteredBrands = brandSuggestions.filter((b) =>
         b.name.toLowerCase().includes(input.toLowerCase())
       );
-      setBrandSuggestions(filteredBrands);
+      setFilteredBrandSuggestions(filteredBrands);
       setNewBrand(filteredBrands.length === 0);
     } else {
+      setFilteredBrandSuggestions([]);
       setNewBrand(false);
     }
+  };
+
+  const handleBrandSelect = (brandName) => {
+    setBrand(brandName);
+    setFilteredBrandSuggestions([]);
   };
 
   const handleAddToWishlist = async () => {
@@ -82,11 +89,14 @@ export const AddToWishlistModal = ({ isOpen, onClose, userId, onAdd }) => {
           type="text"
           id="year"
           value={year}
-          onChange={(event) => setYear(event.target.value)}
+          onChange={(event) => {
+            setYear(event.target.value);
+            setFilteredBrandSuggestions([]);
+          }}
           autoComplete="off"
         />
       </div>
-      <div>
+      <div style={{ position: "relative" }}>
         <label htmlFor="brand">Brand:</label>
         <input
           className="modal-input"
@@ -94,8 +104,18 @@ export const AddToWishlistModal = ({ isOpen, onClose, userId, onAdd }) => {
           id="brand"
           value={brand}
           onChange={handleBrandChange}
+          onBlur={() => setTimeout(() => setFilteredBrandSuggestions([]), 100)}
           autoComplete="off"
         />
+        {filteredBrandSuggestions.length > 0 && (
+          <ul className="suggestions-list">
+            {filteredBrandSuggestions.map((b) => (
+              <li key={b.id} onClick={() => handleBrandSelect(b.name)}>
+                {b.name}
+              </li>
+            ))}
+          </ul>
+        )}
         {newBrand && (
           <p className="error">
             This brand is not in our list. It will be added.
@@ -109,7 +129,10 @@ export const AddToWishlistModal = ({ isOpen, onClose, userId, onAdd }) => {
           type="text"
           id="model"
           value={model}
-          onChange={(event) => setModel(event.target.value)}
+          onChange={(event) => {
+            setModel(event.target.value);
+            setFilteredBrandSuggestions([]);
+          }}
           autoComplete="off"
         />
       </div>
@@ -120,7 +143,10 @@ export const AddToWishlistModal = ({ isOpen, onClose, userId, onAdd }) => {
           type="text"
           id="notes"
           value={notes}
-          onChange={(event) => setNotes(event.target.value)}
+          onChange={(event) => {
+            setNotes(event.target.value);
+            setFilteredBrandSuggestions([]);
+          }}
           autoComplete="off"
         />
       </div>
@@ -143,6 +169,7 @@ export const AddToWishlistModal = ({ isOpen, onClose, userId, onAdd }) => {
           setNotes("");
           setError("");
           setBrandSuggestions([]);
+          setFilteredBrandSuggestions([]);
         }}
         onError={(message) => setError(message)}
         handleAddToWishlist={handleAddToWishlist}
