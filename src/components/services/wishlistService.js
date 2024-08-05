@@ -42,3 +42,15 @@ export const deleteWishlistPost = async (wishlistId) => {
     method: "DELETE",
   });
 };
+
+// Edits a wishlist item
+export const editWishlistPost = async (wishlistItem) => {
+  const response = await fetch(`http://localhost:8088/wishlists/${wishlistItem.id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(wishlistItem),
+  });
+  return response.json();
+};
