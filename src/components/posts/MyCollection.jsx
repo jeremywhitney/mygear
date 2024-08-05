@@ -6,7 +6,7 @@ import { PostFilterBar } from "../filter/PostFilterBar";
 import { SearchBar } from "../filter/SearchBar";
 import { useParams } from "react-router-dom";
 import "./Posts.css";
-import "../filter/Filters.css";
+// import "../filter/Filters.css";
 
 export const MyCollection = ({ currentUser }) => {
   const { userId } = useParams();

@@ -3,9 +3,8 @@ import { getAllPosts } from "../services/postService";
 import { SmallPost } from "./SmallPost";
 import { PostFilterBar } from "../filter/PostFilterBar";
 import { SearchBar } from "../filter/SearchBar";
-import "./Posts.css";
-import "../filter/Filters.css";
-import { Link } from "react-router-dom";
+// import "./Posts.css";
+// import "../filter/Filters.css";
 
 export const AllPosts = ({ currentUser }) => {
   const [allPosts, setAllPosts] = useState([]);
