@@ -53,26 +53,28 @@ export const LargePost = ({
   isOwnCollection,
 }) => {
   return (
-    <div className="card lg-post-container">
-      <Link to={`/gear/${id}`} className="post-link">
-        <div className="row no-gutters">
-          <div className="col-md-4">
-            <img src={image} alt={`${brand} ${model}`} className="card-img" />
-          </div>
-          <div className="col-md-8 d-flex flex-column justify-content-between">
-            <div className="card-body text-content">
-              {forSale && <p className="for-sale-status badge badge-warning">For Sale</p>}
-              <h2 className="card-title">
-                {year} {brand} {model}
-              </h2>
-              <p className="card-text">{condition}</p>
-              <p className="description">{description}</p>
-              <h3 className="card-subtitle mb-2 text-muted">Added to Collection: {date}</h3>
-              {!isOwnCollection && <p className="card-text">{user}</p>}
+    <div className="col-12 mb-4">
+      <div className="card lg-post-container">
+        <Link to={`/gear/${id}`} className="post-link">
+          <div className="row no-gutters">
+            <div className="col-md-4">
+              <img src={image} alt={`${brand} ${model}`} className="card-img" />
+            </div>
+            <div className="col-md-8 d-flex flex-column justify-content-between">
+              <div className="card-body text-content">
+                {forSale && <p className="for-sale-status badge badge-warning">For Sale</p>}
+                <h2 className="card-title">
+                  {year} {brand} {model}
+                </h2>
+                <p className="card-text">{condition}</p>
+                <p className="description">{description}</p>
+                <h3 className="card-subtitle mb-2 text-muted">Added to Collection: {date}</h3>
+                {!isOwnCollection && <p className="card-text">{user}</p>}
+              </div>
             </div>
           </div>
-        </div>
-      </Link>
+        </Link>
+      </div>
     </div>
   );
 };

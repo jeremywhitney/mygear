@@ -1,11 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+
+/* Import the custom font */
 @font-face {
   font-family: 'Allan';
   src: url('public/fonts/Allan.ttf') format('truetype');
-}
-
-@font-face {
-  font-family: 'Lato';
-  src: url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap') format('truetype');
 }
 
 /* Apply global styles */

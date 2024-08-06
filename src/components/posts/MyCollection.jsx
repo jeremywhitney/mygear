@@ -116,7 +116,6 @@
 //   );
 // };
 
-
 // BOOTSTRAP //
 import { useEffect, useState } from "react";
 import { getAllPosts } from "../services/postService";
@@ -215,21 +214,20 @@ export const MyCollection = ({ currentUser }) => {
       <div className="row">
         {filteredPosts.length ? (
           filteredPosts.map((post) => (
-            <div className="col-md-4 mb-4" key={post.id}>
-              <LargePost
-                id={post.id}
-                user={post.user.name}
-                brand={post.brand.name}
-                condition={post.condition?.grade || ""}
-                model={post.model}
-                year={post.year}
-                forSale={post.forSale}
-                description={post.description}
-                image={post.image || "/images/default.jpg"}
-                date={post.timestamp}
-                isOwnCollection={isOwnCollection}
-              />
-            </div>
+            <LargePost
+              key={post.id}
+              id={post.id}
+              user={post.user.name}
+              brand={post.brand.name}
+              condition={post.condition?.grade || ""}
+              model={post.model}
+              year={post.year}
+              forSale={post.forSale}
+              description={post.description}
+              image={post.image || "/images/default.jpg"}
+              date={post.timestamp}
+              isOwnCollection={isOwnCollection}
+            />
           ))
         ) : (
           <p>No posts available</p>

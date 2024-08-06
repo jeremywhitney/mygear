@@ -42,80 +42,56 @@
   color: #CDD6BB; /* Set to accent color */
 }
 
-/********** Large Post / My Collection Styling **********/
-
-.my-posts-container {
-  background-color: #f0f8ff; /* Light blue background for the entire container */
-}
-
-.my-posts {
-  padding: 16px; /* Padding around the container */
-  background-color: #f0f8ff; /* Light blue background */
-}
-
+/* LARGE POST - BOOTSTRAP */
 .lg-post-container {
-  width: 66%; /* 2/3rds of the page width */
+  background: rgba(205, 214, 187, 0.2);
+  border: none;
+  border-radius: 16px;
+  height: 300px; /* Define height */
+  transition: transform 0.1s ease, box-shadow 0.1s ease; /* Smooth transition for hover effects */
+  width: 100%; /* 2/3rds of the page width */
   margin: 15px auto; /* Center align */
   position: relative; /* Needed for absolute positioning of the forSale status */
   padding: 20px;
-  border-radius: 8px; /* Optional rounded corners */
-  background-color: rgba(255, 255, 255, .75); /* Slight transparency */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
-  
 }
 
 .lg-post-container:hover {
-  background-color: #ffffff; /* Solid white background on hover */
-  transform: translateY(-5px); /* Lift effect on hover */
+  transform: scale(1.01); /* Slightly enlarge the card */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Add shadow effect */
 }
 
-.lg-post-content {
-  display: flex;
-  align-items: center; 
-}
-
-.lg-post-content img {
-  width: 25%; /* 1/4 of the container width */
-  height: 200px;
+.card-img {
   object-fit: scale-down;
   margin-right: 20px; /* Space between image and text */
   border-radius: 8px; /* Optional rounded corners */
-}
-
-.text-content {
-  flex: 1; /* Fill the remaining space */
-  position: relative; /* Needed for positioning the forSale status */
 }
 
 .for-sale-status {
   position: absolute; /* Position in the top right corner */
   top: 10px;
   right: 10px;
-  background-color: #ffeb3b; /* Bright yellow for attention */
   padding: 5px;
   border-radius: 4px; /* Optional rounded corners */
   font-weight: bold;
-  color: #333; /* Darker text color for contrast */
+  color: #003231
 }
 
 h2 {
   margin: 5px 0;
   font-size: 1.5rem; /* Larger heading size */
-  color: #333; /* Darker text color */
-}
-
-h3 {
-  margin-top: 0;
+  color: #003231;
 }
 
 p {
   margin: 5px 0;
-  color: #555; /* Slightly lighter color for text */
+  color: #003231;
 }
 
 .description {
   margin: 15px 0; /* Add space around the description */
   padding-left: 20px; /* Indent the description from the left */
+  color: #003231;
 }
 
 .post-link {
@@ -127,7 +103,7 @@ p {
 }
 
 .post-link:hover {
-  color: #fff; /* White text on hover */
+  text-decoration: none;
 }
 
 /********** Gear Details Styling **********/
