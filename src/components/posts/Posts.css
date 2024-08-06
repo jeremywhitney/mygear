@@ -1,62 +1,45 @@
-/********** Small Post / All Posts Styling **********/
-
-.all-posts {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center; /* Center the grid horizontally */
-  gap: 16px; /* Space between containers */
-  padding: 16px; /* Padding around the container */
+/* SMALL POST - BOOTSTRAP */
+.card {
+  background: rgba(205, 214, 187, 0.2);
+  border: none;
+  border-radius: 16px;
+  height: 300px; /* Define height */
+  transition: transform 0.1s ease, box-shadow 0.1s ease; /* Smooth transition for hover effects */
 }
 
-.sm-post-container {
-  flex: 1 1 300px; /* Flex-grow, flex-shrink, and base size */
-  max-width: 300px; /* Set maximum width */
-  min-width: 200px; /* Set minimum width to ensure responsiveness */
-  box-sizing: border-box; /* Include padding and border in width */
-  background-color: rgba(255, 255, 255, .75); /* Slight transparency */
-  border-radius: 8px; /* Rounded corners */
-  padding: 16px; /* Padding inside the container */
-  margin: 5px;
-  text-align: center; /* Center text horizontally */
-  overflow: hidden; /* Ensure content doesn't overflow */
-  
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+.small-post-img {
+  max-height: 100%; /* Ensure image does not exceed the container height */
+  max-width: 100%; /* Ensure image does not exceed the container width */
+  object-fit: cover; /* Cover the container while maintaining aspect ratio */
 }
 
-.sm-post-container:hover {
-  background-color: #ffffff; /* Solid white background on hover */
-  transform: translateY(-5px); /* Lift effect on hover */
+.overlay {
+  position: absolute;
+  top: 50%; /* Center vertically relative to the container */
+  left: 50%; /* Center horizontally relative to the container */
+  transform: translate(-50%, -50%); /* Offset the center point to match */
+  width: 100%;
+  height: 100px; /* Set height for the overlay */
+  background: rgba(0, 0, 0, 0.6); /* Background color with transparency */
+  color: #ffffff; /* Text color */
+  text-align: center;
+  padding: 1rem;
+  box-sizing: border-box; /* Include padding in the element's total width and height */
+  opacity: 1; /* Start visible */
+  transition: opacity 0.5s ease; /* Smooth transition for overlay fade */
 }
 
-.sm-post-content {
-  display: flex;
-  align-items: center; /* Center vertically */
-  gap: 16px; /* Space between image and text */
+.card:hover .overlay {
+  opacity: 0; /* Hide overlay on hover */
 }
 
-.sm-post-content img {
-  object-fit: scale-down;
-  width: 150px;
-  height: 200px;
-  border-radius: 8px; /* Rounded corners for image */
+.card:hover {
+  transform: scale(1.01); /* Slightly enlarge the card */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Add shadow effect */
 }
 
-.text-content {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: left; /* Align text to the left of the container */
-}
-
-.text-content h3 {
-  margin: 0; /* Remove default margin */
-  font-size: 1rem; /* Adjust font size */
-  color: #333; /* Darker text color */
-}
-
-.text-content p {
-  font-size: 0.875rem; /* Slightly smaller font size for user name */
-  color: #666; /* Medium gray color for user name */
+.card-text {
+  color: #CDD6BB; /* Set to accent color */
 }
 
 /********** Large Post / My Collection Styling **********/

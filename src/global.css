@@ -1,9 +1,40 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+@font-face {
+  font-family: 'Allan';
+  src: url('public/fonts/Allan.ttf') format('truetype');
+}
 
+@font-face {
+  font-family: 'Lato';
+  src: url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap') format('truetype');
+}
+
+/* Apply global styles */
 body {
   font-family: 'Lato', sans-serif;
-  background-color: #f0f8ff; /* Light blue color */
-  margin: 0;
-  padding: 0;
-  min-height: 100vh; /* Ensure body takes up at least the full height of the viewport */
+  background-color: #FFFFFF;
+  color: #003231; /* Default text color */
 }
+
+.btn-primary {
+  background-color: #003231;
+  border-color: #003231;
+}
+
+.btn-secondary {
+  background-color: #728370;
+  border-color: #728370;
+}
+
+.text-accent {
+  color: #CDD6BB;
+}
+
+.bg-accent {
+  background-color: #CDD6BB;
+}
+
+.navbar, .nav-link, .header, .auth-container, .auth-form {
+  background-color: #FFFFFF;
+  color: #003231;
+}
+
