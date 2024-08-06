@@ -53,7 +53,7 @@ export const AddToWishlistButton = ({
   };
 
   return (
-    <button onClick={handleClick} className="add-to-wishlist-btn">
+    <button onClick={handleClick} className="btn btn-primary">
       Add to Wishlist
     </button>
   );
