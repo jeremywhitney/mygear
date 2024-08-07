@@ -1,4 +1,3 @@
-// // BOOTSTRAP //
 import { Link } from "react-router-dom";
 import "./SmallPosts.css";
 

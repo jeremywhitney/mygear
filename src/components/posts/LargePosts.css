@@ -1,10 +1,11 @@
 /* LARGE POST - CUSTOM STYLES */
+
 .large-card {
     border: none;
     border-radius: 16px;
     height: 300px; /* Define height */
     transition: transform 0.1s ease, box-shadow 0.1s ease; /* Smooth transition for hover effects */
-    width: 100%; /* Full width */
+    width: 90%; /* Full width */
     margin: 15px auto; /* Center align */
     padding: 0px;
     box-shadow: 0px 0px 6px 4px rgba(205, 214, 187, 0.3); /* Light shadow for depth */
@@ -32,7 +33,7 @@
 }
 
 .large-card .col-md-8 {
-    padding-left: 20px; /* Remove left padding to align content with the image */
+    padding-left: 3rem; /* Remove left padding to align content with the image */
 }
 
 .large-for-sale-status {
@@ -66,8 +67,6 @@
     display: block; /* Ensure Link behaves as a block element */
     text-decoration: none; /* Remove underline from Link */
     padding: 5px; /* Padding around the link */
-    border-radius: 4px; /* Rounded corners for the link */
-    transition: background-color 0.3s, color 0.3s; /* Smooth transition effects */
 }
 
 .large-post-link:hover {

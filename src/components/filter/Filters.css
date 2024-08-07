@@ -27,6 +27,7 @@
     display: flex;
     justify-content: center; /* Center the search bar horizontally */
     margin: 1rem 0; /* Add some margin above and below */
+    max-width: 100%;
   }
   
 .search-bar input {
