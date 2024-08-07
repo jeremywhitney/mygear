@@ -1,0 +1,41 @@
+/* SMALL POST - BOOTSTRAP */
+.small-card {
+    box-shadow: 0px 0px 6px 4px rgba(205, 214, 187, 0.5);
+    border: none;
+    border-radius: 16px;
+    height: 300px; /* Define height */
+    width: 100%;
+    transition: transform 0.1s ease, box-shadow 0.1s ease; /* Smooth transition for hover effects */
+  }
+  
+  .small-post-img {
+    max-height: 100%; /* Ensure image does not exceed the container height */
+    max-width: 100%; /* Ensure image does not exceed the container width */
+    object-fit: cover; /* Cover the container while maintaining aspect ratio */
+  }
+  
+  .small-overlay {
+    top: 50%; /* Center vertically relative to the container */
+    left: 50%; /* Center horizontally relative to the container */
+    transform: translate(-50%, -50%); /* Offset the center point to match */
+    width: 275px;
+    height: 100px; /* Set height for the overlay */
+    background: rgba(0, 0, 0, 0.6); /* Background color with transparency */
+    padding: 1rem;
+    opacity: 1; /* Start visible */
+    transition: opacity 0.5s ease; /* Smooth transition for overlay fade */
+  }
+  
+  .small-card:hover .small-overlay {
+    opacity: 0; /* Hide overlay on hover */
+  }
+  
+  .small-card:hover {
+    transform: scale(1.01); /* Slightly enlarge the card */
+    box-shadow: 0px 0px 6px 4px rgba(114, 131, 112, 0.3); /* Add shadow effect */
+  }
+  
+  .small-card-text {
+    color: #CDD6BB; /* Set to accent color */
+  }
+  

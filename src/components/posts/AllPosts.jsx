@@ -164,7 +164,7 @@ export const AllPosts = ({ currentUser }) => {
       <div className="row">
         {filteredPosts.length ? (
           filteredPosts.map((post) => (
-            <div className="col-md-4 mb-4" key={post.id}>
+            <div className="col-md-3 mb-4" key={post.id}>
               <SmallPost
                 id={post.id}
                 image={post.image || "/images/default.jpg"}
