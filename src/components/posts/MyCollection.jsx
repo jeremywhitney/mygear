@@ -77,7 +77,7 @@ export const MyCollection = ({ currentUser }) => {
   const isOwnCollection = !userId || userId === String(currentUser.id);
 
   return (
-    <div className="container my-posts-container">
+    <div className="container my-posts-container my-4">
       <h1 className="text-center mb-4">
         {isOwnCollection
           ? "My Collection"

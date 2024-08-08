@@ -36,7 +36,7 @@ export const EditGear = ({ currentUser }) => {
 
   return (
     <div>
-      <h1 className="text-center">Edit Gear</h1>
+      <h1 className="text-center my-4">Edit Gear</h1>
       <DropdownUtility>
         {({ categories, conditions, brands }) =>
           initialData ? (

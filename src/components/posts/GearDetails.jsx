@@ -28,7 +28,7 @@ export const GearDetails = ({ currentUser }) => {
   const imageUrl = post.image || "/images/default.jpg";
 
   return (
-    <div className="container gear-details-container">
+    <div className="container gear-details-container my-4">
       <h1 className="text-center mb-4 gear-details-title">Gear Details</h1>
       <div className="container gear-details-section">
         <div className="row">
