@@ -3,7 +3,7 @@ import { CategoryDropdown } from "../filter/CategoryDropdown";
 import { ConditionDropdown } from "../filter/ConditionDropdown";
 import { BrandDropdown } from "../filter/BrandDropdown";
 import { ForSaleFilter } from "../filter/ForSaleFilter";
-import { AddBrandModal } from "./AddBrandModal";
+import { AddBrandModal } from "../modals/AddBrandModal.jsx";
 import "./GearForm.css"
 
 export const GearForm = ({
