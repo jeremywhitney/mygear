@@ -17,7 +17,7 @@ export const AddGear = ({ currentUser }) => {
 
   return (
     <div>
-      <h1>Add Gear to Collection</h1>
+      <h1 className="text-center">Add Gear to Collection</h1>
       <DropdownUtility>
         {({ categories, conditions, brands }) => (
           <GearForm

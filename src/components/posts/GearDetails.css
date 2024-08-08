@@ -3,8 +3,7 @@
 .gear-details-section {
   width: 90%;
   margin: 3rem auto;
-  padding: 20px;
-  border: 1px solid #ddd;
+  padding: 2rem;
   border-radius: 16px;
   box-shadow: 0px 0px 6px 4px rgba(114, 131, 112, 0.5);
 }
@@ -14,14 +13,14 @@
 }
 
 .gear-image-container {
-  height: 600px; /* Set fixed height */
+  max-height: 600px; /* Set fixed height */
   overflow: hidden; /* Hide overflow */
 }
 
 .gear-image {
-  height: 100%; /* Fill the container height */
+  height: auto;
   width: auto; 
-  object-fit: contain; 
+  object-fit: contain;
   border-radius: 16px;
 }
 
@@ -31,17 +30,16 @@
 }
 
 .gear-title {
-  margin-top: 0;
   color: #003231; /* Primary color for title */
 }
 
-.gear-condition,
-.gear-description,
-.gear-timestamp {
-  margin-bottom: 10px;
+.gear-for-sale {
+  max-width: fit-content;
+  padding: 5px;
 }
 
 .gear-description p {
+  margin-top: 10px;
   text-indent: 20px;
 }
 

@@ -52,21 +52,21 @@ export const GearDetails = ({ currentUser }) => {
                 </h5>
               )}
             </div>
-            <h2 className="gear-title">{post.year} {post.brand?.name} {post.model}</h2>
-            <div className="gear-condition">Condition: {post.condition?.grade || ""}</div>
+            <h2 className="gear-title mt-0">{post.year} {post.brand?.name} {post.model}</h2>
+            <div className="gear-condition mb-10">Condition: {post.condition?.grade || ""}</div>
             {post.forSale && <div className="alert alert-warning gear-for-sale">For Sale</div>}
-            <div className="gear-description">
+            <div className="gear-description mb-10">
               <strong>Description:</strong>
               <p>{post.description}</p>
             </div>
-            <div className="gear-timestamp">Added to Collection: {post.timestamp}</div>
+            <div className="gear-timestamp mb-10">Added to Collection: {post.timestamp}</div>
           </div>
         </div>
         <div className="button-container mt-4 d-flex justify-content-around">
           {isGearOwner && (
             <>
               <div className="mb-2">
-                <Link to={`/gear/edit/${postId}`} className="btn btn-warning gear-edit-button">
+                <Link to={`/gear/edit/${postId}`} className="btn btn-secondary gear-edit-button">
                   Edit Gear
                 </Link>
               </div>
