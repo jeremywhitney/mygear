@@ -1,56 +1,7 @@
-/* General Styles for Auth Container */
-.auth-container {
-  border: 1px solid #ddd; /* Consistent border color */
-  margin: 3rem auto; /* Center container with auto margins */
-  padding: 2rem;
-  border-radius: 8px; /* Match border-radius used elsewhere */
-  background-color: #ffffff; /* Match background color used in other components */
-  max-width: 500px; /* Set a max-width for better responsiveness */
-}
-
-/* Header Styling */
-.header {
-  font-size: 1.5rem; /* Adjusted to match other headers */
-  color: #333; /* Consistent text color */
-  text-align: center; /* Center align header text */
-  margin-bottom: 1rem; /* Add space below the header */
-}
-
-/* Auth Form Layout */
 .auth-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-/* Auth Form Input */
-.auth-form-input {
-  width: 100%; /* Full width of the container */
-  padding: 8px; /* Match padding style */
-  border: 1px solid #ccc; /* Consistent border color */
-  border-radius: 4px; /* Match border-radius */
-  font-size: 0.8rem; /* Match font size */
-  box-sizing: border-box; /* Ensure padding is included in width */
-  margin-bottom: 1rem; /* Space between inputs */
-}
-
-/* Register Link */
-.register-link {
-  text-align: center;
-  margin-top: 1rem; /* Space above the link */
-}
-
-/* Fieldset Styling */
-.auth-fieldset {
-  border: none; /* Remove default border */
-  margin: 0; /* Remove margin */
-  padding: 0; /* Remove padding */
-}
-
-.sign-in-button, .register-button {
-  background-color: darkgrey;
-}
-
-.sign-in-button:hover, .register-button:hover {
-  background-color: dimgray;
+    box-shadow: 0px 0px 6px 4px rgba(205, 214, 187, 0.5);
+    border: none;
+    border-radius: 16px;
+    height: auto; 
+    width: 100%;
 }

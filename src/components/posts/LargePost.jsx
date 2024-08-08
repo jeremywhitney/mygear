@@ -34,7 +34,7 @@ export const LargePost = ({
                 <h2 className="large-card-title">
                   {year} {brand} {model}
                 </h2>
-                <p className="large-card-text">{condition}</p>
+                <p className="large-card-text">Condition: {condition}</p>
                 <p className="large-description">{description}</p>
                 <p className="large-card-subtitle mb-2 text-muted">Added to Collection: {date}</p>
                 {!isOwnCollection && <p className="large-card-text">{user}</p>}

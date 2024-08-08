@@ -1,109 +1,8 @@
-// import { useEffect, useState } from "react";
-// import { Link, useParams } from "react-router-dom";
-// import { editUser, getUserById } from "../services/userService";
-// import { getPostsByUserId } from "../services/postService";
-// import "./Profile.css";
-
-// export const UserProfile = ({ currentUser }) => {
-//   const [user, setUser] = useState({});
-//   const [postsCount, setPostsCount] = useState(0);
-//   const [isEditMode, setIsEditMode] = useState(false);
-//   const [editableName, setEditableName] = useState("");
-//   const [editableLocation, setEditableLocation] = useState("");
-//   const [editableAboutMe, setEditableAboutMe] = useState("");
-//   const { userId } = useParams();
-
-//   useEffect(() => {
-//     const fetchUserData = async () => {
-//       const userObj = await getUserById(userId);
-//       setUser(userObj);
-//       setEditableName(userObj.name);
-//       setEditableLocation(userObj.location);
-//       setEditableAboutMe(userObj.about);
-
-//       const postsArray = await getPostsByUserId(userId);
-//       setPostsCount(postsArray.length);
-//     };
-//     fetchUserData();
-//   }, [userId]);
-
-//   const toggleEditMode = () => {
-//     setIsEditMode(!isEditMode);
-//   };
-
-//   const handleNameChange = (event) => setEditableName(event.target.value);
-//   const handleLocationChange = (event) =>
-//     setEditableLocation(event.target.value);
-//   const handleAboutMeChange = (event) => setEditableAboutMe(event.target.value);
-
-//   const handleSave = async () => {
-//     const updatedUser = {
-//       ...user,
-//       name: editableName,
-//       location: editableLocation,
-//       about: editableAboutMe,
-//     };
-//     await editUser(userId, updatedUser);
-//     setUser(updatedUser);
-//     setIsEditMode(false);
-//   };
-
-//   return (
-//     <div className="user-profile-container">
-//       <div className="user-name">
-//         {isEditMode ? (
-//           <input type="text" value={editableName} onChange={handleNameChange} />
-//         ) : (
-//           <span>{user.name}'s Profile</span>
-//         )}
-//       </div>
-//       <div className="user-location">
-//         {isEditMode ? (
-//           <input
-//             type="text"
-//             value={editableLocation}
-//             onChange={handleLocationChange}
-//           />
-//         ) : (
-//           <span>{user.location}</span>
-//         )}
-//       </div>
-//       <div className="user-posts">
-//         {postsCount} pieces of gear in{" "}
-//         <Link to={`/mycollection/${user.id}`}>My Collection</Link>
-//       </div>
-//       <div className="user-about">
-//         {isEditMode ? (
-//           <textarea value={editableAboutMe} onChange={handleAboutMeChange} />
-//         ) : (
-//           <span>{user.about}</span>
-//         )}
-//       </div>
-//       {currentUser.id === user.id && (
-//         <div>
-//           {isEditMode ? (
-//             <>
-//               <button className="save-button" onClick={handleSave}>
-//                 Save
-//               </button>
-//             </>
-//           ) : (
-//             <button className="edit-button" onClick={toggleEditMode}>
-//               Edit Profile
-//             </button>
-//           )}
-//         </div>
-//       )}
-//     </div>
-//   );
-// };
-
-
-// BOOTSTRAP //
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { editUser, getUserById } from "../services/userService";
 import { getPostsByUserId } from "../services/postService";
+import "./Profile.css";
 
 export const UserProfile = ({ currentUser }) => {
   const [user, setUser] = useState({});
@@ -150,62 +49,71 @@ export const UserProfile = ({ currentUser }) => {
   };
 
   return (
-    <div className="container user-profile-container">
-      <div className="mb-3">
+    <div className="container user-profile-container p-4 mt-4">
+      <div className="text-center mb-4">
         {isEditMode ? (
-          <input 
-            type="text" 
-            value={editableName} 
-            onChange={handleNameChange} 
-            className="form-control"
-            placeholder="Enter name"
-          />
+          <div className="d-flex justify-content-center mb-2">
+            <input
+              type="text"
+              value={editableName}
+              onChange={handleNameChange}
+              className="form-control user-profile-name-input"
+              placeholder="Enter name"
+            />
+          </div>
         ) : (
-          <h2>{user.name}'s Profile</h2>
+          <h2 className="user-profile-heading">{user.name}'s Profile</h2>
+        )}
+        {isEditMode ? (
+          <div className="d-flex justify-content-center">
+            <input
+              type="text"
+              value={editableLocation}
+              onChange={handleLocationChange}
+              className="form-control user-profile-location-input mt-2"
+              placeholder="Enter location"
+            />
+          </div>
+        ) : (
+          <p className="user-profile-location">
+            <strong>Location:</strong> {user.location}
+          </p>
         )}
       </div>
-      <div className="mb-3">
-        {isEditMode ? (
-          <input
-            type="text"
-            value={editableLocation}
-            onChange={handleLocationChange}
-            className="form-control"
-            placeholder="Enter location"
-          />
-        ) : (
-          <p><strong>Location:</strong> {user.location}</p>
-        )}
-      </div>
-      <div className="mb-3">
-        <p>{postsCount} pieces of gear in{" "}
-          <Link to={`/mycollection/${user.id}`}>My Collection</Link>
+      <div className="mb-4 text-center user-profile-collection-info">
+        <p className="user-profile-collection-text font-weight-bold">
+          {postsCount} pieces of gear in{" "}
+          <Link to={`/mycollection/${user.id}`} className="text-primary">
+            My Collection
+          </Link>
         </p>
       </div>
-      <div className="mb-3">
+      <div className="mb-4 mx-auto user-profile-about">
         {isEditMode ? (
-          <textarea 
-            value={editableAboutMe} 
-            onChange={handleAboutMeChange} 
-            className="form-control"
+          <textarea
+            value={editableAboutMe}
+            onChange={handleAboutMeChange}
+            className="form-control user-profile-input"
             placeholder="About me"
+            rows="5"
           />
         ) : (
-          <p><strong>About:</strong> {user.about}</p>
+          <div className="user-profile-about-text">
+            <p>
+              <strong>About Me:</strong>
+            </p>
+            <p>{user.about}</p>
+          </div>
         )}
       </div>
       {currentUser.id === user.id && (
         <div className="d-flex justify-content-end">
           {isEditMode ? (
-            <button 
-              className="btn btn-primary me-2" 
-              onClick={handleSave}>
+            <button className="btn btn-primary me-2" onClick={handleSave}>
               Save
             </button>
           ) : (
-            <button 
-              className="btn btn-secondary" 
-              onClick={toggleEditMode}>
+            <button className="btn btn-secondary" onClick={toggleEditMode}>
               Edit Profile
             </button>
           )}
