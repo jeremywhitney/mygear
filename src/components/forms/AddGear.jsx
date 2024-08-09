@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { createGearPost } from "../services/postService";
 import { GearForm } from "./GearForm";
-import { DropdownUtility } from "../filter/DropdownUtility";
+import { DropdownUtility } from "../dropdowns/DropdownUtility.jsx";
 
 export const AddGear = ({ currentUser }) => {
   const navigate = useNavigate();

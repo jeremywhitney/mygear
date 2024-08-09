@@ -3,7 +3,7 @@ import { getAllPosts } from "../services/postService";
 import { getUserById } from "../services/userService";
 import { LargePost } from "./LargePost";
 import { PostFilterBar } from "../filter/PostFilterBar";
-import { SearchBar } from "../filter/SearchBar";
+import { SearchBar } from "../inputs/SearchBar";
 import { useParams } from "react-router-dom";
 
 export const MyCollection = ({ currentUser }) => {

@@ -62,7 +62,7 @@ export const UserProfile = ({ currentUser }) => {
             />
           </div>
         ) : (
-          <h2 className="user-profile-heading">{user.name}'s Profile</h2>
+          <h1 className="user-profile-heading">{user.name}'s Profile</h1>
         )}
         {isEditMode ? (
           <div className="d-flex justify-content-center">

@@ -1,5 +1,5 @@
-import { BrandDropdown } from "./BrandDropdown";
-import { CategoryDropdown } from "./CategoryDropdown";
+import { BrandDropdown } from "../dropdowns/BrandDropdown.jsx";
+import { CategoryDropdown } from "../dropdowns/CategoryDropdown";
 import { ForSaleFilter } from "./ForSaleFilter";
 
 export const PostFilterBar = ({

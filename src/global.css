@@ -23,6 +23,11 @@ body {
   border-color: #728370;
 }
 
+h1 {
+  font-family: 'Allan';
+  src: url('public/fonts/Allan.ttf') format('truetype');
+}
+
 .txt-alt-primary {
   color: #003231;
 }

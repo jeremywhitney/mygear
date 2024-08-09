@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { CategoryDropdown } from "../filter/CategoryDropdown";
-import { ConditionDropdown } from "../filter/ConditionDropdown";
-import { BrandDropdown } from "../filter/BrandDropdown";
+import { CategoryDropdown } from "../dropdowns/CategoryDropdown";
+import { ConditionDropdown } from "../dropdowns/ConditionDropdown";
+import { BrandDropdown } from "../dropdowns/BrandDropdown";
 import { ForSaleFilter } from "../filter/ForSaleFilter";
 import { AddBrandModal } from "../modals/AddBrandModal.jsx";
 import "./GearForm.css"

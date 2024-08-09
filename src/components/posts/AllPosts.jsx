@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { getAllPosts } from "../services/postService";
 import { SmallPost } from "./SmallPost";
 import { PostFilterBar } from "../filter/PostFilterBar";
-import { SearchBar } from "../filter/SearchBar";
+import { SearchBar } from "../inputs/SearchBar.jsx";
 
 export const AllPosts = ({ currentUser }) => {
   const [allPosts, setAllPosts] = useState([]);
