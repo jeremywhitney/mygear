@@ -3,7 +3,7 @@
 /* Import the custom font */
 @font-face {
   font-family: 'Allan';
-  src: url('public/fonts/Allan.ttf') format('truetype');
+  src: url('/public/fonts/Allan.ttf') format('truetype');
 }
 
 /* Apply global styles */
@@ -25,7 +25,6 @@ body {
 
 h1 {
   font-family: 'Allan';
-  src: url('public/fonts/Allan.ttf') format('truetype');
 }
 
 .txt-alt-primary {

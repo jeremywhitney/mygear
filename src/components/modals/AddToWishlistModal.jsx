@@ -1,62 +1,35 @@
 import { useEffect, useState } from "react";
-import { addBrand, getBrands } from "../services/brandService.js";
 import { AddToWishlistButton } from "../wishlist/AddToWishlistButton.jsx";
 import { WishlistModal } from "./WishlistModal.jsx";
+import { BrandInput } from "../inputs/BrandInput.jsx";
+import { useBrands } from "../utilities/useBrands.jsx";
+import { addBrand } from "../services/brandService.js";
 
 export const AddToWishlistModal = ({ isOpen, onClose, userId, onAdd }) => {
   const [year, setYear] = useState("");
   const [brand, setBrand] = useState("");
-  const [brandSuggestions, setBrandSuggestions] = useState([]);
-  const [filteredBrandSuggestions, setFilteredBrandSuggestions] = useState([]);
-  const [newBrand, setNewBrand] = useState(false);
   const [model, setModel] = useState("");
   const [notes, setNotes] = useState("");
   const [error, setError] = useState("");
+  const { brands: initialBrands } = useBrands();
+  const [brands, setBrands] = useState(initialBrands);
 
   useEffect(() => {
-    const fetchBrands = async () => {
-      try {
-        const brands = await getBrands();
-        setBrandSuggestions(brands);
-      } catch (err) {
-        setError("Failed to fetch brands.");
-      }
-    };
-    if (isOpen) {
-      fetchBrands();
-    }
-  }, [isOpen]);
-
-  const handleBrandChange = (event) => {
-    const input = event.target.value;
-    setBrand(input);
-
-    if (input) {
-      const filteredBrands = brandSuggestions.filter((b) =>
-        b.name.toLowerCase().includes(input.toLowerCase())
-      );
-      setFilteredBrandSuggestions(filteredBrands);
-      setNewBrand(filteredBrands.length === 0);
-    } else {
-      setFilteredBrandSuggestions([]);
-      setNewBrand(false);
-    }
-  };
-
-  const handleBrandSelect = (brandName) => {
-    setBrand(brandName);
-    setFilteredBrandSuggestions([]);
-  };
+    setBrands(initialBrands);
+  }, [initialBrands]);
 
   const handleAddToWishlist = async () => {
     let brandId;
 
-    if (newBrand) {
+    // Determine if the brand needs to be created
+    const existingBrand = brands.find((b) => b.name === brand);
+    if (!existingBrand) {
       const createdBrand = await addBrand({ name: brand });
       brandId = createdBrand.id;
+      // Update local brand list
+      setBrands([...brands, { id: brandId, name: brand }]);
     } else {
-      const existingBrand = brandSuggestions.find((b) => b.name === brand);
-      brandId = existingBrand ? existingBrand.id : null;
+      brandId = existingBrand.id;
     }
 
     if (!brandId) {
@@ -82,9 +55,7 @@ export const AddToWishlistModal = ({ isOpen, onClose, userId, onAdd }) => {
           userId={userId}
           wishlistType="fromWishlist"
           year={year}
-          brandId={
-            newBrand ? null : brandSuggestions.find((b) => b.name === brand)?.id
-          }
+          brandId={brands.find((b) => b.name === brand)?.id}
           model={model}
           notes={notes}
           onSuccess={() => {
@@ -95,8 +66,6 @@ export const AddToWishlistModal = ({ isOpen, onClose, userId, onAdd }) => {
             setModel("");
             setNotes("");
             setError("");
-            setBrandSuggestions([]);
-            setFilteredBrandSuggestions([]);
           }}
           onError={(message) => setError(message)}
           handleAddToWishlist={handleAddToWishlist}
@@ -124,47 +93,11 @@ export const AddToWishlistModal = ({ isOpen, onClose, userId, onAdd }) => {
             type="text"
             id="year"
             value={year}
-            onChange={(event) => {
-              setYear(event.target.value);
-              setFilteredBrandSuggestions([]);
-            }}
+            onChange={(event) => setYear(event.target.value)}
             autoComplete="off"
           />
         </div>
-        <div className="mb-3 position-relative">
-          <label htmlFor="brand" className="form-label">
-            <strong>Brand:</strong>
-          </label>
-          <input
-            className="form-control"
-            type="text"
-            id="brand"
-            value={brand}
-            onChange={handleBrandChange}
-            onBlur={() =>
-              setTimeout(() => setFilteredBrandSuggestions([]), 100)
-            }
-            autoComplete="off"
-          />
-          {filteredBrandSuggestions.length > 0 && (
-            <ul className="list-group position-absolute w-100">
-              {filteredBrandSuggestions.map((b) => (
-                <li
-                  key={b.id}
-                  className="list-group-item"
-                  onClick={() => handleBrandSelect(b.name)}
-                >
-                  {b.name}
-                </li>
-              ))}
-            </ul>
-          )}
-          {newBrand && (
-            <p className="text-danger mt-1">
-              This brand is not in our list. It will be added.
-            </p>
-          )}
-        </div>
+        <BrandInput brand={brand} setBrand={setBrand} />
         <div className="mb-3">
           <label htmlFor="model" className="form-label">
             <strong>Model:</strong>
@@ -174,10 +107,7 @@ export const AddToWishlistModal = ({ isOpen, onClose, userId, onAdd }) => {
             type="text"
             id="model"
             value={model}
-            onChange={(event) => {
-              setModel(event.target.value);
-              setFilteredBrandSuggestions([]);
-            }}
+            onChange={(event) => setModel(event.target.value)}
             autoComplete="off"
           />
         </div>
@@ -190,10 +120,7 @@ export const AddToWishlistModal = ({ isOpen, onClose, userId, onAdd }) => {
             type="text"
             id="notes"
             value={notes}
-            onChange={(event) => {
-              setNotes(event.target.value);
-              setFilteredBrandSuggestions([]);
-            }}
+            onChange={(event) => setNotes(event.target.value)}
             autoComplete="off"
           />
         </div>
