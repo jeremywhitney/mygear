@@ -2,41 +2,25 @@ import { useEffect, useState } from "react";
 import { AddToWishlistButton } from "../wishlist/AddToWishlistButton.jsx";
 import { WishlistModal } from "./WishlistModal.jsx";
 import { BrandInput } from "../inputs/BrandInput.jsx";
-import { useBrands } from "../utilities/useBrands.jsx";
-import { addBrand } from "../services/brandService.js";
 
 export const AddToWishlistModal = ({ isOpen, onClose, userId, onAdd }) => {
+  // State to hold form input values
   const [year, setYear] = useState("");
   const [brand, setBrand] = useState("");
+  const [brandId, setBrandId] = useState(null); // Track brandId directly from Brand Input
   const [model, setModel] = useState("");
   const [notes, setNotes] = useState("");
   const [error, setError] = useState("");
-  const { brands: initialBrands } = useBrands();
-  const [brands, setBrands] = useState(initialBrands);
 
-  useEffect(() => {
-    setBrands(initialBrands);
-  }, [initialBrands]);
-
+  // Function to handle adding an item to the wishlist
   const handleAddToWishlist = async () => {
-    let brandId;
-
-    // Determine if the brand needs to be created
-    const existingBrand = brands.find((b) => b.name === brand);
-    if (!existingBrand) {
-      const createdBrand = await addBrand({ name: brand });
-      brandId = createdBrand.id;
-      // Update local brand list
-      setBrands([...brands, { id: brandId, name: brand }]);
-    } else {
-      brandId = existingBrand.id;
-    }
-
+    // If brandId is null or undefined, set an error message
     if (!brandId) {
       setError("Brand ID is null or undefined.");
       return;
     }
 
+    // Return the wishlist data object
     return {
       userId,
       year: parseInt(year),
@@ -48,17 +32,18 @@ export const AddToWishlistModal = ({ isOpen, onClose, userId, onAdd }) => {
 
   return (
     <WishlistModal
-      isOpen={isOpen}
-      onClose={onClose}
+      isOpen={isOpen} // Prop to control the visibility of the modal
+      onClose={onClose} // Function to close the modal
       footerButtons={
         <AddToWishlistButton
           userId={userId}
           wishlistType="fromWishlist"
           year={year}
-          brandId={brands.find((b) => b.name === brand)?.id}
+          brandId={brandId}
           model={model}
           notes={notes}
           onSuccess={() => {
+            // If successful, call the onAdd callback, close the modal, and reset form inputs and error
             onAdd();
             onClose();
             setYear("");
@@ -67,8 +52,8 @@ export const AddToWishlistModal = ({ isOpen, onClose, userId, onAdd }) => {
             setNotes("");
             setError("");
           }}
-          onError={(message) => setError(message)}
-          handleAddToWishlist={handleAddToWishlist}
+          onError={(message) => setError(message)} // Handle error messages
+          handleAddToWishlist={handleAddToWishlist} // Pass the handleAddToWishlist function
         />
       }
     >
@@ -80,7 +65,7 @@ export const AddToWishlistModal = ({ isOpen, onClose, userId, onAdd }) => {
           type="button"
           className="btn-close"
           aria-label="Close"
-          onClick={onClose}
+          onClick={onClose} // Close button in the modal header
         ></button>
       </div>
       <div className="modal-body">
@@ -93,11 +78,16 @@ export const AddToWishlistModal = ({ isOpen, onClose, userId, onAdd }) => {
             type="text"
             id="year"
             value={year}
-            onChange={(event) => setYear(event.target.value)}
+            onChange={(event) => setYear(event.target.value)} // Update year state when input changes
             autoComplete="off"
           />
         </div>
-        <BrandInput brand={brand} setBrand={setBrand} />
+        {/* Reusable BrandInput component for selecting or adding a brand */}
+        <BrandInput
+          brand={brand}
+          setBrand={setBrand}
+          onBrandChange={setBrandId} // Use callback to set brandId
+        />
         <div className="mb-3">
           <label htmlFor="model" className="form-label">
             <strong>Model:</strong>
@@ -107,7 +97,7 @@ export const AddToWishlistModal = ({ isOpen, onClose, userId, onAdd }) => {
             type="text"
             id="model"
             value={model}
-            onChange={(event) => setModel(event.target.value)}
+            onChange={(event) => setModel(event.target.value)} // Update model state when input changes
             autoComplete="off"
           />
         </div>
@@ -120,10 +110,11 @@ export const AddToWishlistModal = ({ isOpen, onClose, userId, onAdd }) => {
             type="text"
             id="notes"
             value={notes}
-            onChange={(event) => setNotes(event.target.value)}
+            onChange={(event) => setNotes(event.target.value)} // Update notes state when input changes
             autoComplete="off"
           />
         </div>
+        {/* Display error message if there's an error */}
         {error && <p className="text-danger">{error}</p>}
       </div>
     </WishlistModal>
