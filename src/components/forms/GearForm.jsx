@@ -70,7 +70,7 @@ export const GearForm = ({
   return (
     <form onSubmit={onSubmit} className="container mt-4 gear-form-container">
       <div className="row">
-        <div className="col-lg-4 mb-3 gear-form-category">
+        <div className="col-lg-3 mb-3 gear-form-category">
           <CategoryDropdown
             categories={categories}
             selectedCategory={category}
@@ -78,15 +78,28 @@ export const GearForm = ({
           />
           {errors.category && <p className="text-danger">{errors.category}</p>}
         </div>
-        <div className="col-lg-4 mb-3 gear-form-condition">
+        <div className="col-lg-3 mb-3 gear-form-condition">
           <ConditionDropdown
             conditions={conditions}
             selectedCondition={condition}
             setSelectedCondition={setCondition}
           />
         </div>
-        <div className="col-lg-4 mb-3 gear-form-for-sale">
+        <div className="col-lg-3 mb-3 gear-form-for-sale">
           <ForSaleFilter forSale={forSale} setForSale={setForSale} />
+        </div>
+        <div className="col-lg-3 mb-3 gear-form-year">
+          <label htmlFor="year" className="form-label">
+            <strong>Year:</strong>
+          </label>
+          <input
+            type="text"
+            autoComplete="off"
+            className="form-control"
+            id="year"
+            value={year}
+            onChange={(e) => setYear(e.target.value)}
+          />
         </div>
       </div>
 
