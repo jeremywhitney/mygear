@@ -8,9 +8,8 @@ export const ForSaleFilter = ({ forSale, setForSale }) => {
         onChange={() => setForSale(!forSale)}
       />
       <label className="form-check-label">
-        For Sale
+        <strong>For Sale</strong>
       </label>
     </div>
   );
 };
-

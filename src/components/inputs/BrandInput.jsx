@@ -60,7 +60,7 @@ export const BrandInput = ({ brand, setBrand, onBrandChange }) => {
       (b) => b.name.toLowerCase() === brandName.toLowerCase()
     );
     if (selectedBrand) {
-      onBrandChange(selectedBrand.id); // Pass the selected brand ID to the parent compoent
+      onBrandChange(selectedBrand.id); // Pass the selected brand ID to the parent component
     }
   };
 
@@ -68,7 +68,8 @@ export const BrandInput = ({ brand, setBrand, onBrandChange }) => {
   useEffect(() => {
     if (brand) {
       // Update suggestions when the brand changes
-      const normalizedBrand = brand.toLowerCase();
+      const normalizedBrand =
+        typeof brand === "string" ? brand.toLowerCase() : "";
       const filteredBrands = brands.filter((b) =>
         b.name.toLowerCase().includes(normalizedBrand)
       );
