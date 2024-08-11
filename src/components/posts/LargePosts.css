@@ -1,0 +1,75 @@
+/* LARGE POST - CUSTOM STYLES */
+
+.large-card {
+    border: none;
+    border-radius: 16px;
+    height: 300px; /* Define height */
+    transition: transform 0.1s ease, box-shadow 0.1s ease; /* Smooth transition for hover effects */
+    width: 90%; /* Full width */
+    margin: 15px auto; /* Center align */
+    padding: 0px;
+    box-shadow: 0px 0px 6px 4px rgba(205, 214, 187, 0.3); /* Light shadow for depth */
+}
+
+.large-card:hover {
+    transform: scale(1.01); /* Slightly enlarge the card */
+    box-shadow: 0px 0px 6px 4px rgba(114, 131, 112, 0.5); /* Add shadow effect */
+}
+
+.large-post-img {
+    height: 100%; /* Ensure image takes full height of its container */
+    width: 100%; /* Ensure image takes full width of its container */
+    border-radius: 16px;
+    object-fit: cover;
+}
+
+.large-card .row {
+    margin: 0; /* Remove default margins from the row */
+}
+
+.large-card .col-md-4 {
+    padding: 0; /* Remove padding to ensure image takes full width of its column */
+    height: 290px;
+}
+
+.large-card .col-md-8 {
+    padding-left: 3rem; /* Remove left padding to align content with the image */
+}
+
+.large-for-sale-status {
+    position: absolute; /* Position in the top right corner */
+    top: 10px;
+    right: 10px;
+    padding: 5px;
+    border-radius: 4px; /* Optional rounded corners */
+    font-weight: bold;
+    color: #003231;
+}
+
+.large-card-title {
+    margin: 5px 0;
+    font-size: 1.5rem; /* Larger heading size */
+    color: #003231;
+}
+
+.large-card-text {
+    margin: 5px 0;
+    color: #003231;
+}
+
+.large-description {
+    margin: 15px 0; /* Add space around the description */
+    padding-left: 20px; /* Indent the description from the left */
+    color: #003231;
+    white-space: pre-wrap;
+}
+
+.large-post-link {
+    display: block; /* Ensure Link behaves as a block element */
+    text-decoration: none; /* Remove underline from Link */
+    padding: 5px; /* Padding around the link */
+}
+
+.large-post-link:hover {
+    text-decoration: none;
+}

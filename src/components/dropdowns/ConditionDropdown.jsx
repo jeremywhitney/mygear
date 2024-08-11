@@ -5,7 +5,7 @@ export const ConditionDropdown = ({
 }) => {
   return (
     <select
-      className="filter-dropdown"
+      className="form-select"
       value={selectedCondition}
       onChange={(e) => setSelectedCondition(e.target.value)}
     >
@@ -18,3 +18,4 @@ export const ConditionDropdown = ({
     </select>
   );
 };
+

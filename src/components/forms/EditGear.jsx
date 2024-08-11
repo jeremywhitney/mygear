@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { editGearPost, getPostById } from "../services/postService";
 import { GearForm } from "./GearForm";
-import { DropdownUtility } from "../filter/DropdownUtility";
+import { DropdownUtility } from "../utilities/DropdownUtility.jsx";
 
 export const EditGear = ({ currentUser }) => {
   const [initialData, setInitialData] = useState(null);
@@ -36,7 +36,7 @@ export const EditGear = ({ currentUser }) => {
 
   return (
     <div>
-      <h1>Edit Gear</h1>
+      <h1 className="text-center my-4">Edit Gear</h1>
       <DropdownUtility>
         {({ categories, conditions, brands }) =>
           initialData ? (

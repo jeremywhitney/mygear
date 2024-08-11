@@ -8,7 +8,7 @@ export const CategoryDropdown = ({
   );
   return (
     <select
-      className="filter-dropdown"
+      className="form-select"
       value={selectedCategory}
       onChange={(e) => setSelectedCategory(e.target.value)}
     >

@@ -4,9 +4,10 @@ export const BrandDropdown = ({
   setSelectedBrand,
 }) => {
   const sortedBrands = [...brands].sort((a, b) => a.name.localeCompare(b.name));
+
   return (
     <select
-      className="filter-dropdown"
+      className="form-select"
       value={selectedBrand}
       onChange={(e) => setSelectedBrand(e.target.value)}
     >

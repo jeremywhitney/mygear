@@ -3,10 +3,8 @@ import { getAllPosts } from "../services/postService";
 import { getUserById } from "../services/userService";
 import { LargePost } from "./LargePost";
 import { PostFilterBar } from "../filter/PostFilterBar";
-import { SearchBar } from "../filter/SearchBar";
+import { SearchBar } from "../inputs/SearchBar";
 import { useParams } from "react-router-dom";
-import "./Posts.css";
-import "../filter/Filters.css";
 
 export const MyCollection = ({ currentUser }) => {
   const { userId } = useParams();
@@ -46,6 +44,8 @@ export const MyCollection = ({ currentUser }) => {
     if (userId) {
       const user = await getUserById(userId);
       setViewedUser(user);
+    } else {
+      setViewedUser(null);
     }
   };
 
@@ -74,44 +74,54 @@ export const MyCollection = ({ currentUser }) => {
     setFilteredPosts(posts);
   }, [selectedCategory, selectedBrand, forSale, allPosts]);
 
-  const isOwnCollection = !userId || userId === currentUser.id;
+  const isOwnCollection = !userId || userId === String(currentUser.id);
 
   return (
-    <div className="my-posts-container">
-      <h1>
+    <div className="container my-posts-container my-4">
+      <h1 className="text-center mb-4">
         {isOwnCollection
           ? "My Collection"
           : `${viewedUser?.name || "User"}'s Collection`}
       </h1>
-      <SearchBar posts={allPosts} setFilteredPosts={setFilteredPosts} />
-      <PostFilterBar
-        categories={categories}
-        selectedCategory={selectedCategory}
-        setSelectedCategory={setSelectedCategory}
-        brands={brands}
-        selectedBrand={selectedBrand}
-        setSelectedBrand={setSelectedBrand}
-        forSale={forSale}
-        setForSale={setForSale}
-      />
-      <article className="my-posts">
-        {filteredPosts.map((post) => (
-          <LargePost
-            key={post.id}
-            id={post.id}
-            user={post.user.name}
-            brand={post.brand.name}
-            condition={post.condition?.grade || ""}
-            model={post.model}
-            year={post.year}
-            forSale={post.forSale}
-            description={post.description}
-            image={post.image || "/images/default.jpg"}
-            date={post.timestamp}
-            isOwnCollection={isOwnCollection}
+      <div className="row mb-4">
+        <div className="col-md-12 col-lg-6 mb-3 mb-lg-0">
+          <SearchBar posts={allPosts} setFilteredPosts={setFilteredPosts} />
+        </div>
+        <div className="col-md-12 col-lg-6">
+          <PostFilterBar
+            categories={categories}
+            selectedCategory={selectedCategory}
+            setSelectedCategory={setSelectedCategory}
+            brands={brands}
+            selectedBrand={selectedBrand}
+            setSelectedBrand={setSelectedBrand}
+            forSale={forSale}
+            setForSale={setForSale}
           />
-        ))}
-      </article>
+        </div>
+      </div>
+      <div className="row">
+        {filteredPosts.length ? (
+          filteredPosts.map((post) => (
+            <LargePost
+              key={post.id}
+              id={post.id}
+              user={post.user.name}
+              brand={post.brand.name}
+              condition={post.condition?.grade || ""}
+              model={post.model}
+              year={post.year}
+              forSale={post.forSale}
+              description={post.description}
+              image={post.image || "/images/default.jpg"}
+              date={post.timestamp}
+              isOwnCollection={isOwnCollection}
+            />
+          ))
+        ) : (
+          <p>No posts available</p>
+        )}
+      </div>
     </div>
   );
 };

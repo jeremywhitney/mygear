@@ -5,7 +5,7 @@ export const SearchBar = ({ posts, setFilteredPosts }) => {
 
   useEffect(() => {
     const filterPosts = () => {
-      const lowerCaseQuery = query.toLocaleLowerCase();
+      const lowerCaseQuery = query.toLowerCase();
 
       const filtered = posts.filter((post) => {
         return (
@@ -24,13 +24,19 @@ export const SearchBar = ({ posts, setFilteredPosts }) => {
   }, [query, posts, setFilteredPosts]);
 
   return (
-    <div className="search-bar">
-      <input
-        type="text"
-        placeholder="Search..."
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
-      />
+    <div className="container">
+      <div className="row justify-content-center">
+        <div className="col-md-6">
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Search..."
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+          />
+        </div>
+      </div>
     </div>
   );
 };
+
