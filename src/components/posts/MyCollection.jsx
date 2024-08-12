@@ -84,10 +84,10 @@ export const MyCollection = ({ currentUser }) => {
           : `${viewedUser?.name || "User"}'s Collection`}
       </h1>
       <div className="row mb-4">
-        <div className="col-md-12 col-lg-6 mb-3 mb-lg-0">
+        <div className="col-md-12 col-lg-5 mb-3 mb-lg-0">
           <SearchBar posts={allPosts} setFilteredPosts={setFilteredPosts} />
         </div>
-        <div className="col-md-12 col-lg-6">
+        <div className="col-md-12 col-lg-7">
           <PostFilterBar
             categories={categories}
             selectedCategory={selectedCategory}

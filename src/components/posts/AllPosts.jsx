@@ -85,11 +85,11 @@ export const AllPosts = ({ currentUser }) => {
     <div className="container all-posts-container my-4">
       <h1 className="text-center mb-4">All Posts</h1>
       <div className="row mb-4">
-        <div className="col-md-12 col-lg-6 mb-3 mb-lg-0">
+        <div className="col-md-12 col-lg-5 mb-3 mb-lg-0">
           {/* SearchBar component for searching posts */}
           <SearchBar posts={allPosts} setFilteredPosts={setFilteredPosts} />
         </div>
-        <div className="col-md-12 col-lg-6">
+        <div className="col-md-12 col-lg-7">
           {/* PostFilterBar component for filtering posts by category, brand, and sale status */}
           <PostFilterBar
             categories={categories}
